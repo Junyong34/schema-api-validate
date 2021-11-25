@@ -1,0 +1,50 @@
+{
+  "name": "schema-api-validate",
+  "version": "1.0.0",
+  "description": "api validate test",
+  "main": "index.js",
+  "scripts": {
+    "test": "schema-test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Junyong34/schema-api-validate.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Junyong34/schema-api-validate/issues"
+  },
+  "homepage": "https://github.com/Junyong34/schema-api-validate#readme",
+  "dependencies": {
+    "jest": "^27.3.1",
+    "ts-node": "^10.4.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.3",
+    "@types/node": "^16.11.10",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "ajv": "^8.8.2",
+    "axios": "^0.24.0",
+    "eslint": "^7.29.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-testing-library": "^5.0.0",
+    "prettier": "^2.4.1",
+    "ts-json-schema-generator": "^0.97.0"
+  },
+  "lint-staged": {
+    "src/*.{ts,tsx,js,jsx}": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest",
+      "prettier"
+    ]
+  }
+}
