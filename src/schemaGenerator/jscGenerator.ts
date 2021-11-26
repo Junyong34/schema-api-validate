@@ -2,7 +2,7 @@ import * as path from "path";
 import * as fs from "fs";
 import { pipe } from "../utils";
 import * as TJS from "typescript-json-schema";
-import { validate } from "../validate";
+import { validate } from "../utils/validate";
 
 interface IGenerator {
   generator: TJS.JsonSchemaGenerator;
@@ -19,9 +19,11 @@ const compilerOptions: TJS.CompilerOptions = {
 };
 
 const getFiles = () => {
-  const files = fs.readdirSync(path.resolve(BASE_URL, "typeDef"));
+  const files = fs.readdirSync(
+    path.resolve(BASE_URL, "apiSchemaTypes/example")
+  );
   const filesPath = files.map((f) => {
-    return path.join(__dirname, "../typeDef", f);
+    return path.join(__dirname, "../apiSchemaTypes/example", f);
   });
 
   console.dir(filesPath);

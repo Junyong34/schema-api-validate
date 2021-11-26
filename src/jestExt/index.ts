@@ -1,4 +1,4 @@
-import { validate } from "../validate";
+import { validate } from "../utils/validate";
 
 export const extendJSCMatcher = (): void => {
   expect.extend({

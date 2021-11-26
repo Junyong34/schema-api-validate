@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "schema-test",
-    "schema": "ts-node ./src/validate.ts"
+    "schema": "ts-node src/utils/validate.ts"
   },
   "repository": {
     "type": "git",

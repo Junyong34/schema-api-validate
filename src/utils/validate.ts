@@ -1,4 +1,17 @@
 import Ajv, { JSONSchemaType } from "ajv";
+export const validate = (JSC: object, data: object) => {
+  const ajv = new Ajv({ allErrors: true });
+  const valid = ajv.validate(JSC, data);
+  const errorText =
+    ajv.errorsText() && ajv.errorsText().toLocaleLowerCase() !== "no errors"
+      ? ajv.errorsText()
+      : "";
+
+  return {
+    errorText,
+    valid: !!valid,
+  };
+};
 // interface MyData {
 //   foo: number;
 //   bar?: string;
@@ -33,16 +46,3 @@ import Ajv, { JSONSchemaType } from "ajv";
 //   console.log(validate.errors);
 // }
 //
-export const validate = (JSC: object, data: object) => {
-  const ajv = new Ajv({ allErrors: true });
-  const valid = ajv.validate(JSC, data);
-  const errorText =
-    ajv.errorsText() && ajv.errorsText().toLocaleLowerCase() !== "no errors"
-      ? ajv.errorsText()
-      : "";
-
-  return {
-    errorText,
-    valid: !!valid,
-  };
-};

@@ -1,4 +1,4 @@
-import { extendJSCMatcher } from "../jestExtend";
+import { extendJSCMatcher } from "../jestExt";
 export {};
 declare global {
   namespace jest {

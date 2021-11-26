@@ -1,6 +1,6 @@
 // import axios from "axios";
-import BinInterfaceJSC from "../schema/StudentITFPayload";
-import { validate } from "../validate";
+import BinInterfaceJSC from "../schema/exampleITPayload";
+import { validate } from "../utils/validate";
 // import { extendJSCMatcher } from "../jestExtend";
 // extendJSCMatcher();
 describe("Ajax", () => {
