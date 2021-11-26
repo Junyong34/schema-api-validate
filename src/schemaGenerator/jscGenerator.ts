@@ -23,6 +23,7 @@ const getFiles = () => {
 };
 
 const makeGenerator = (file: string[]): IGenerator => {
+  console.log(`🚀 file =================>`, file);
   const program = TJS.getProgramFromFiles(file, compilerOptions, BASE_URL);
   const generator = TJS.buildGenerator(program, settings);
 
