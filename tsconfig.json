@@ -20,9 +20,10 @@
     "isolatedModules": true,
     "noEmit": true,
     "outDir": "build",
+//    "types": ["jest", "jest-extended"],
     "typeRoots": [
       "./node_modules/@types",
-      "./typings"
+      "./src/typings",
     ]
   },
   "ts-node": {
@@ -30,8 +31,9 @@
       "module": "CommonJS"
     }
   },
-  "exclude": ["node_modules", "**/*.spec.ts"],
+  "files": ["./src/global.d.ts"],
+  "exclude": ["node_modules", "./src/__tests__/**/*.spec.ts"],
   "include": [
-    "src"
+    "./src/**/*",
   ]
 }

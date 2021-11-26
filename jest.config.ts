@@ -3,14 +3,21 @@ import type { Config } from "@jest/types";
 // Sync object
 const config: Config.InitialOptions = {
   verbose: true,
-  roots: ["<rootDir>/src"],
+  preset: "ts-jest",
+  // setupFilesAfterEnv: ["jest-extended/all"],
+  // roots: ["<rootDir>/src"],
+  setupFilesAfterEnv: [
+    "jest-extended/all",
+    "./src/setupJest.ts", // includes import 'jest-extended'
+  ],
   transform: {
     "^.+\\.tsx?$": "ts-jest",
   },
   globals: {
     "ts-jest": {
+      // tsConfig: "tsconfig.json",
       diagnostics: false, // 컴파일 시 에러가 있을 경우 무시하지 않고 테스트를 실패하게 하는 옵션입니다. 기본값이 false이기 때문에 true로 바꿔주었습니다.
-      isolatedModules: false,
+      isolatedModules: true,
     },
   },
   // setupFilesAfterEnv: ["<rootDir>/jestSetup.js"],
