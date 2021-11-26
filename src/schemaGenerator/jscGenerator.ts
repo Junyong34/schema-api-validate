@@ -1,8 +1,8 @@
 import * as path from "path";
 import * as fs from "fs";
-import { pipe } from "../utils";
+import { pipe } from "../utils/pipe";
 import * as TJS from "typescript-json-schema";
-import { validate } from "../utils/validate";
+import { getAllFiles } from "../utils/fileFn";
 
 interface IGenerator {
   generator: TJS.JsonSchemaGenerator;
@@ -19,15 +19,7 @@ const compilerOptions: TJS.CompilerOptions = {
 };
 
 const getFiles = () => {
-  const files = fs.readdirSync(
-    path.resolve(BASE_URL, "apiSchemaTypes/example")
-  );
-  const filesPath = files.map((f) => {
-    return path.join(__dirname, "../apiSchemaTypes/example", f);
-  });
-
-  console.dir(filesPath);
-  return filesPath;
+  return getAllFiles(path.resolve(BASE_URL, "apiSchemaTypes"), []);
 };
 
 const makeGenerator = (file: string[]): IGenerator => {
@@ -62,12 +54,11 @@ const makeSymbols = ({ generator, file }: IGenerator) => {
   console.log("Schema 파일 변환을 시작합니다.");
   schemas.forEach((schema) => {
     const buffer = generator.getSchemaForSymbol(schema);
-    const file = `
-    export default
+    const file = `export default
     ${JSON.stringify(buffer, null, 2)}
     `;
 
-    fs.writeFileSync(path.join(schemaFolderPath, `${schema}Payload.ts`), file);
+    fs.writeFileSync(path.join(schemaFolderPath, `${schema}Schema.ts`), file);
   });
 };
 //

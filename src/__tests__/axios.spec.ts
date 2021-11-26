@@ -1,5 +1,5 @@
 // import axios from "axios";
-import BinInterfaceJSC from "../schema/exampleITPayload";
+import BinInterfaceJSC from "../schema/exampleITSchema";
 import { validate } from "../utils/validate";
 // import { extendJSCMatcher } from "../jestExtend";
 // extendJSCMatcher();
