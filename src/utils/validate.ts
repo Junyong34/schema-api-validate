@@ -1,5 +1,5 @@
 import Ajv, { JSONSchemaType } from "ajv";
-export const validate = (JSC: object, data: object) => {
+export const validate = (JSC: any, data: any) => {
   const ajv = new Ajv({ allErrors: true });
   const valid = ajv.validate(JSC, data);
   const errorText =
