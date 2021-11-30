@@ -24,7 +24,27 @@ export const extendJSCMatcher = (): void => {
     },
   });
 };
-export const extendTobeOdd = (): void => {
+export const extendToBeWithinRange = () => {
+  expect.extend({
+    toBeWithinRange(received, floor, ceiling) {
+      const pass = received >= floor && received <= ceiling;
+      if (pass) {
+        return {
+          message: () =>
+            `expected ${received} not to be within range ${floor} - ${ceiling}`,
+          pass: true,
+        };
+      } else {
+        return {
+          message: () =>
+            `expected ${received} to be within range ${floor} - ${ceiling}`,
+          pass: false,
+        };
+      }
+    },
+  });
+};
+export const extendToBeOdd = () => {
   expect.extend({
     toBeOdd(received) {
       const pass = received % 2 === 1;

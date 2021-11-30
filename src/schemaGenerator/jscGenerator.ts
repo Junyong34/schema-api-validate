@@ -38,14 +38,19 @@ const makeSymbols = ({ generator, file }: IGenerator) => {
   // const symbol = generator.getUserSymbols();
   // const symbolList = generator && generator.getSymbols("StudentInterface");
   // const schema = generator.getSchemaForSymbol(symbolList.name);
-  const filesStr = file.join(", ");
+  const removePrefix = file.map((f) => {
+    return f.replace("STD.ts", ".ts");
+  });
+  const filesStr = removePrefix.join(", ");
   const symbols = generator.getUserSymbols();
 
-  console.log(`🚀 symbols =================>`, symbols);
+  // console.log(`🚀 symbols =================>`, symbols);
   // console.log(`🚀 symbols =================>`, schema);
 
-  const schemas = symbols.filter((symbol) => !!filesStr.match(symbol));
-  console.log(`변환 가능한 ${schemas.length} 개의 파일을 찾았습니다.`);
+  const schemas = symbols.filter((symbol) => {
+    return !!filesStr.match(symbol);
+  });
+  console.log(`변환 가능한 ${schemas} 개의 파일을 찾았습니다.`);
 
   const schemaFolderPath = path.join(__dirname, "../schema");
   if (!fs.existsSync(schemaFolderPath)) {
@@ -61,6 +66,7 @@ const makeSymbols = ({ generator, file }: IGenerator) => {
 
     fs.writeFileSync(path.join(schemaFolderPath, `${schema}Schema.ts`), file);
   });
+  console.log("파일변환종료");
 };
 //
 console.log("파일변환시작");

@@ -53,7 +53,7 @@ describe("타입체크", () => {
 
       // Assertion
       // expect(2).not.toBeOdd();
-      expect(100).toBeWithinRange(90, 110);
+      // expect(100).toBeWithinRange(90, 110);
     });
   });
 });
