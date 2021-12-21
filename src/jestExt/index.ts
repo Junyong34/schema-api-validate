@@ -12,7 +12,7 @@ export const extendJSCMatcher = (): void => {
         // console.log(`🚀 pass =================>`, pass);
         return {
           pass,
-          message: () => errorText,
+          message: () => `data match JSC ${errorText}`,
         };
       }
 

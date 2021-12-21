@@ -1,8 +1,8 @@
 import * as path from "path";
 import * as fs from "fs";
-import { pipe } from "../utils/pipe";
+import { pipe } from "../../utils/pipe";
 import * as TJS from "typescript-json-schema";
-import { getAllFiles } from "../utils/fileFn";
+import { getAllFiles } from "../../utils/fileFn";
 
 interface IGenerator {
   generator: TJS.JsonSchemaGenerator;
@@ -10,7 +10,7 @@ interface IGenerator {
 }
 
 // src
-const BASE_URL = path.resolve(__dirname, "..");
+const BASE_URL = path.resolve(__dirname, "../..");
 const settings: TJS.PartialArgs = {
   required: true,
 };
@@ -50,9 +50,9 @@ const makeSymbols = ({ generator, file }: IGenerator) => {
   const schemas = symbols.filter((symbol) => {
     return !!filesStr.match(symbol);
   });
-  console.log(`변환 가능한 ${schemas} 개의 파일을 찾았습니다.`);
+  console.log(`변환 가능한 ${schemas.length} 개의 파일을 찾았습니다.`);
 
-  const schemaFolderPath = path.join(__dirname, "../schema");
+  const schemaFolderPath = path.join(__dirname, "../../__schema__");
   if (!fs.existsSync(schemaFolderPath)) {
     fs.mkdirSync(schemaFolderPath);
   }

@@ -4,6 +4,7 @@ import type { Config } from "@jest/types";
 const config: Config.InitialOptions = {
   verbose: true,
   preset: "ts-jest",
+  maxWorkers: 3,
   // setupFilesAfterEnv: ["jest-extended/all"],
   // roots: ["<rootDir>/src"],
   setupFilesAfterEnv: [

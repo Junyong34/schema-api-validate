@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "schema": "ts-node src/utils/validate.ts"
+    "schema": "ts-node src/utils/validate.ts",
+    "createSchema": "ts-node src/generator/createSchema/jscGenerator.ts",
+    "createTypeModel": "ts-node src/generator/createSwaggerTS/openAPIGennerator.ts",
+    "generateTS": "openapi -i https://turb-api.guardione.dev/swagger.json --output ./dist --client axios"
   },
   "repository": {
     "type": "git",
@@ -19,10 +22,12 @@
   "homepage": "https://github.com/Junyong34/schema-api-validate#readme",
   "dependencies": {
     "jest": "^26.6.3",
+    "puppeteer": "^12.0.1",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.2"
   },
   "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.4.18",
     "@testing-library/jest-dom": "^5.15.1",
     "@types/jest": "^27.0.3",
     "@types/node": "^16.11.10",
@@ -31,11 +36,15 @@
     "@typescript-eslint/parser": "^5.4.0",
     "ajv": "^8.8.2",
     "axios": "^0.24.0",
+    "cross-blob": "^3.0.0",
     "eslint": "^7.29.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-testing-library": "^5.0.0",
+    "form-data": "^4.0.0",
     "jest-extended": "^1.1.0",
     "js-convert-case": "^4.1.2",
+    "node-fetch": "^3.1.0",
+    "openapi-typescript-codegen": "^0.12.5",
     "prettier": "^2.4.1",
     "qs": "^6.10.1",
     "ts-jest": "26.5.6",
