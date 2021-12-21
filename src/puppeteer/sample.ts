@@ -1,56 +1,92 @@
-// import {puppeteer} from 'puppeteer';
+import puppeteer from "puppeteer";
 
-const puppeteer = require('puppeteer');
-require('dotenv').config();
+// const doPuppeteer = async () => {
+//   const browser = await puppeteer.launch({
+//     headless: false,
+//     devtools: true,
+//   });
+//   // Create a new tab
+//   const page = await browser.newPage();
+//
+//   // Connect to Chrome DevTools
+//   const client = await page.target().createCDPSession();
+//
+//   // Set throttling property
+//   await client.send("Network.emulateNetworkConditions", {
+//     offline: false,
+//     downloadThroughput: (200 * 1024) / 8,
+//     uploadThroughput: (200 * 1024) / 8,
+//     latency: 20,
+//   });
+//
+//   // Navigate and take a screenshot
+//   await page.goto("https://fdalvi.github.io");
+//   await page.screenshot({ path: "screenshot.png" });
+//   await browser.close();
+//   // const browser = await puppeteer.launch({
+//   //   headless: false,
+//   // });
+//   // const page = await browser.newPage();
+//   // await page.goto("http://localhost:3000/");
+//   // await page.setViewport({ width: 1920, height: 1300 });
+//   // await page.waitFor(5000);
+//   // // await page.screenshot({ path: "./screenshot.png" });
+//   // // await page.waitFor(10000);
+//   //
+//   // const inputIDSelector =
+//   //   "body > div > div.pcm-login-main-container-center > div.pcm-login-wrapper > div.pcm-login-wrapper-trapezoid > div > div.login-box > form > div.username-box > div > input";
+//   // const inputPWSelecotr =
+//   //   "body > div > div.pcm-login-main-container-center > div.pcm-login-wrapper > div.pcm-login-wrapper-trapezoid > div > div.login-box > form > div.password-box > div.password-input-wrapper > input";
+//   //
+//   // // console.log(process.env.PW);
+//   // // await page.type(inputIDSelector, process.env.ID as string);
+//   // await page.type(inputPWSelecotr, process.env.PW as string);
+//   //
+//   // // await page.screenshot({ path: "./screenshot.png" });
+//   //
+//   // const loginBtn =
+//   //   "body > div > div.pcm-login-main-container-center > div.pcm-login-wrapper > div.pcm-login-wrapper-trapezoid > div > div.login-box > form > div.login-btn-box";
+//   // await page.click(loginBtn);
+//   // // await page.screenshot({ path: "./screenshot.png" });
+//   //
+//   // await page.waitFor(3000);
+//   // // await page.waitForNavigation();
+//   // // await page.screenshot({ path: "./screenshot.png" });
+//   // await page.close();
+//   // await browser.close();
+// };
 
-const doPuppeteer = async() => {
-    const browser = await puppeteer.launch({
-        headless : false
-    });
-    const page = await browser.newPage();
-    await page.goto("http:///#/");
-    await page.setViewport({width: 1920, height: 1300});
-    await page.waitFor(5000);
-    // await page.screenshot({ path: "./screenshot.png" });
-    // await page.waitFor(10000);
-
-    const inputIDSelector =
-        "body > div > div.pcm-login-main-container-center > div.pcm-login-wrapper > div.pcm-login-wrapper-trapezoid > div > div.login-box > form > div.username-box > div > input";
-    const inputPWSelecotr =
-        "body > div > div.pcm-login-main-container-center > div.pcm-login-wrapper > div.pcm-login-wrapper-trapezoid > div > div.login-box > form > div.password-box > div.password-input-wrapper > input";
-
-    // console.log(process.env.PW);
-    // await page.type(inputIDSelector, process.env.ID as string);
-    await page.type(inputPWSelecotr, process.env.PW as string);
-
-    // await page.screenshot({ path: "./screenshot.png" });
-
-    const loginBtn =
-        "body > div > div.pcm-login-main-container-center > div.pcm-login-wrapper > div.pcm-login-wrapper-trapezoid > div > div.login-box > form > div.login-btn-box";
-    await page.click(loginBtn);
-    // await page.screenshot({ path: "./screenshot.png" });
-
-    await page.waitFor(3000);
-    // await page.waitForNavigation();
-    // await page.screenshot({ path: "./screenshot.png" });
-    await page.close();
-    await browser.close();
-}
-
-
-
-doPuppeteer();
+// doPuppeteer();
 
 // puppeteer.executablePath()는 설치한 puppeteer 노드모듈의 번들로 제공되는 chromium 브라우저의 경로의 주소값을 가진다.
 
 // 해당 예제는 puppeteer.launch를 통해 퍼펫티어를 실행할때 해당 경로의 값을 지정한다.
 
-// console.log(puppeteer.executablePath());
+(async () => {
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  await page.setRequestInterception(true);
 
+  page.on("request", (request) => {
+    if (request.resourceType() === "script") {
+      request.abort();
+    } else {
+      request.continue();
+    }
+  });
 
+  await page.goto("http://localhost:3000/");
+  const client = await page.target().createCDPSession();
+  await client.send("Network.emulateNetworkConditions", {
+    offline: false,
+    downloadThroughput: (50 * 1024) / 8,
+    uploadThroughput: (20 * 1024) / 8,
+    latency: 500,
+  });
+  // await page.screenshot({ path: "pptr-nojs.png" });
 
-
-
+  await browser.close();
+})();
 // 딜레이를 주기 위한 함수
 
 // function delay( timeout ) {
@@ -62,8 +98,6 @@ doPuppeteer();
 //     });
 //
 // }
-
-
 
 //
 //

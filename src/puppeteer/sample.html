@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script>
+
+  function draw() {
+    console.log(`🚀 111 =================>`, 111);
+    // Canvas boilerplate
+    const canvas = document.querySelector('#mycanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Create our shapes
+    const shape1 = [[100, 100], [70, 200], [150, 250], [300, 250], [300, 100], [150, 50]];
+    const shape2 = [[60, 60], [60, 160], [110, 210], [260, 210], [260, 60], [110, 10]];
+
+    // Create Path2D objects from our shapes
+    let p1 = new Path2D();
+    p1.moveTo(...shape1[0]);
+    for (let i = 1; i < shape1.length; i++) {
+      p1.lineTo(...shape1[i]);
+    }
+    p1.closePath();
+    let p2 = new Path2D();
+    p2.moveTo(...shape2[0]);
+    for (let i = 1; i < shape2.length; i++) {
+      p2.lineTo(...shape2[i]);
+    }
+    p2.closePath();
+    // Draw the shapes onb the canvas
+
+    ctx.fillStyle = 'white';
+    ctx.lineWidth = 4;
+    ctx.strokeStyle = 'green';
+
+    ctx.stroke(p1);
+    ctx.strokeStyle = 'blue';
+
+    ctx.stroke(p2);
+    // Just for this demo, fill the shapes to make them look joined together
+// ctx.fillStyle='red'
+    ctx.fill(p2);
+    ctx.fill(p1);
+
+
+
+    // Discover whether coordinate points are inside/outside the other shape
+    let inside = [],
+            outside = [];
+    //
+    for (let i = 0; i < shape2.length; i++) {
+      if (ctx.isPointInPath(p1, ...shape2[i])) inside.push(shape2[i]);
+      else outside.push(shape2[i]);
+    }
+
+    for (let i = 0; i < shape1.length; i++) {
+      if (ctx.isPointInPath(p2, ...shape1[i])) inside.push(shape1[i]);
+      else outside.push(shape1[i]);
+    }
+
+    // Display coordinates inside
+    ctx.fillStyle = 'red';
+    for (let i = 0; i < inside.length; i++) {
+      ctx.beginPath();
+      ctx.moveTo(...inside[i]);
+      ctx.arc(...inside[i], 5, 0, 2 * Math.PI);
+      ctx.fill();
+    }
+
+    // ... and outside
+    ctx.fillStyle = 'black';
+    for (let i = 0; i < outside.length; i++) {
+      ctx.beginPath();
+      ctx.moveTo(...outside[i]);
+      ctx.arc(...outside[i], 5, 0, 2 * Math.PI);
+      ctx.fill();
+    }
+
+  }
+  function draw2() {
+    console.log(`🚀 111 =================>`, 111);
+    // Canvas boilerplate
+    const canvas = document.querySelector('#mycanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Create our shapes
+    const shape1 = [[100, 100], [70, 200], [150, 250], [300, 250], [300, 100], [150, 50]];
+    const shape2 = [[60, 60], [60, 160], [110, 210], [260, 210], [260, 60], [110, 10]];
+
+    // Create Path2D objects from our shapes
+    let p1 = new Path2D();
+    p1.moveTo(...shape1[0]);
+    for (let i = 1; i < shape1.length; i++) {
+      p1.lineTo(...shape1[i]);
+    }
+    p1.closePath();
+    let p2 = new Path2D();
+    p2.moveTo(...shape2[0]);
+    for (let i = 1; i < shape2.length; i++) {
+      p2.lineTo(...shape2[i]);
+    }
+    p2.closePath();
+    // Draw the shapes onb the canvas
+
+    ctx.fillStyle = 'white';
+    ctx.lineWidth = 4;
+    ctx.strokeStyle = 'green';
+
+    ctx.stroke(p1);
+    ctx.strokeStyle = 'blue';
+
+    ctx.stroke(p2);
+    // Just for this demo, fill the shapes to make them look joined together
+
+    ctx.fill(p2);
+    ctx.fill(p1);
+
+
+
+    // Discover whether coordinate points are inside/outside the other shape
+    // let inside = [],
+    //         outside = [];
+    // //
+    // for (let i = 0; i < shape2.length; i++) {
+    //   if (ctx.isPointInPath(p1, ...shape2[i])) inside.push(shape2[i]);
+    //   else outside.push(shape2[i]);
+    // }
+    //
+    // for (let i = 0; i < shape1.length; i++) {
+    //   if (ctx.isPointInPath(p2, ...shape1[i])) inside.push(shape1[i]);
+    //   else outside.push(shape1[i]);
+    // }
+
+    // Display coordinates inside
+    // ctx.fillStyle = 'red';
+    // for (let i = 0; i < inside.length; i++) {
+    //   ctx.beginPath();
+    //   ctx.moveTo(...inside[i]);
+    //   ctx.arc(...inside[i], 5, 0, 2 * Math.PI);
+    //   ctx.fill();
+    // }
+    //
+    // // ... and outside
+    // ctx.fillStyle = 'black';
+    // for (let i = 0; i < outside.length; i++) {
+    //   ctx.beginPath();
+    //   ctx.moveTo(...outside[i]);
+    //   ctx.arc(...outside[i], 5, 0, 2 * Math.PI);
+    //   ctx.fill();
+    // }
+
+  }
+</script>
+<body>
+<button onclick="draw()"> 그리기</button>
+<button onclick="draw2()"> 그리기2</button>
+<canvas id="mycanvas" width="500" height="500"/>
+<canvas id="mycanvas2" width="500" height="500"/>
+</body>
+</html>
