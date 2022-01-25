@@ -1,4 +1,4 @@
-import usersITSchema from "../../../schema/usersITSchema";
+import usersITSchema from "../../../__schema__/usersITSchema";
 import fetchUsers from "../../../api/users/users";
 import { usersIT } from "../../../apiSchemaTypes/DataSearch/usersIT";
 import { extendJSCMatcher, extendToBeWithinRange } from "../../../jestExt";

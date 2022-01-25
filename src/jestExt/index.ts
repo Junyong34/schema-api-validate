@@ -1,25 +1,22 @@
 import { validate } from "../utils/validate";
 
-export const extendJSCMatcher = (): void => {
+export const extendJSCMatcher = () => {
   expect.extend({
-    toMatchJSC(JSC: any, data: any) {
+    toMatchJSC(JSC: string, data: any) {
       const schemaValid = validate(JSC, data);
-
       const pass = schemaValid.valid;
       const errorText = schemaValid.errorText;
 
       if (pass) {
-        // console.log(`🚀 pass =================>`, pass);
         return {
           pass,
-          message: () => `data match JSC ${errorText}`,
+          message: () => `데이터 스키마 매칭 통과`,
         };
       }
 
-      // console.log(`🚀 pass2 =================>`, pass);
       return {
         pass,
-        message: () => `data must not match JSC ${errorText}`,
+        message: () => `데이터 스키마 매칭 오류 ${errorText}`,
       };
     },
   });

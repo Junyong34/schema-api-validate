@@ -6,8 +6,9 @@ export type usersIT = {
     last_name: string;
     avatar: string;
   };
-  support: {
-    url: string;
-    text: string;
-  };
+  support: supportK;
+};
+type supportK = {
+  url: string;
+  text: string;
 };

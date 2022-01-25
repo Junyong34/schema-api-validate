@@ -2,11 +2,7 @@ import Ajv, { JSONSchemaType } from "ajv";
 export const validate = (JSC: any, data: any) => {
   const ajv = new Ajv({ allErrors: true });
   const valid = ajv.validate(JSC, data);
-  const errorText =
-    ajv.errorsText() && ajv.errorsText().toLocaleLowerCase() !== "no errors"
-      ? ajv.errorsText()
-      : "";
-
+  const errorText = ajv.errorsText();
   return {
     errorText,
     valid: !!valid,

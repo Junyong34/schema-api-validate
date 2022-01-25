@@ -10,7 +10,7 @@ interface IGenerator {
 }
 
 // src
-const BASE_URL = path.resolve(__dirname, "../..");
+const BASE_PATH = path.resolve(__dirname, "../..");
 const settings: TJS.PartialArgs = {
   required: true,
 };
@@ -19,12 +19,12 @@ const compilerOptions: TJS.CompilerOptions = {
 };
 
 const getFiles = () => {
-  return getAllFiles(path.resolve(BASE_URL, "apiSchemaTypes"), []);
+  return getAllFiles(path.resolve(BASE_PATH, "apiSchemaTypes"), []);
 };
 
 const makeGenerator = (file: string[]): IGenerator => {
   console.log(`🚀 file =================>`, file);
-  const program = TJS.getProgramFromFiles(file, compilerOptions, BASE_URL);
+  const program = TJS.getProgramFromFiles(file, compilerOptions, BASE_PATH);
   const generator = TJS.buildGenerator(program, settings);
 
   // console.log(TJS.buildGenerator(program, settings));
@@ -60,11 +60,12 @@ const makeSymbols = ({ generator, file }: IGenerator) => {
   console.log("Schema 파일 변환을 시작합니다.");
   schemas.forEach((schema) => {
     const buffer = generator.getSchemaForSymbol(schema);
-    const file = `export default
-    ${JSON.stringify(buffer, null, 2)}
-    `;
-
-    fs.writeFileSync(path.join(schemaFolderPath, `${schema}Schema.ts`), file);
+    // const file = `export default
+    // ${JSON.stringify(buffer, null, 2)}
+    // `;
+    const file = JSON.stringify(buffer, null, 2);
+    // fs.writeFileSync(path.join(schemaFolderPath, `${schema}Schema.ts`), file);
+    fs.writeFileSync(path.join(schemaFolderPath, `${schema}Schema.json`), file);
   });
   console.log("파일변환종료");
 };
