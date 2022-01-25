@@ -8,7 +8,9 @@
     "schema": "ts-node src/utils/validate.ts",
     "createSchema": "ts-node src/generator/createSchema/jscGenerator.ts",
     "createTypeModel": "ts-node src/generator/createSwaggerTS/openAPIGennerator.ts",
-    "generateTS": "openapi -i https://turb-api.guardione.dev/swagger.json --output ./dist --client axios"
+    "generateTS": "openapi -i https://turb-api.guardione.dev/swagger.json --output ./dist --client axios",
+    "validate-schema": "openapi-generator-cli validate -i ./src/api/common/swaggerAPI.json",
+    "generate-client": "openapi-generator-cli generate -i ./src/api/common/swaggerAPI.json -g typescript-axios -o ./src/generated-sources/openapi --skip-validate-spec",
   },
   "repository": {
     "type": "git",
@@ -27,7 +29,7 @@
     "typescript": "^4.5.2"
   },
   "devDependencies": {
-    "@openapitools/openapi-generator-cli": "^2.4.18",
+    "@openapitools/openapi-generator-cli": "^2.4.25",
     "@testing-library/jest-dom": "^5.15.1",
     "@types/jest": "^27.0.3",
     "@types/node": "^16.11.10",

@@ -21,6 +21,7 @@ const config: Config.InitialOptions = {
       isolatedModules: true,
     },
   },
+  testEnvironment: "node",
   // setupFilesAfterEnv: ["<rootDir>/jestSetup.js"],
 };
 export default config;
