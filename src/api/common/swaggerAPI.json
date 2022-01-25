@@ -1,0 +1,4764 @@
+{
+  "swagger": "2.0",
+  "basePath": "/api",
+  "paths": {
+    "/auth/change-password": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "비밀번호 변경",
+        "operationId": "post_change_password",
+        "parameters": [
+          {
+            "name": "payload",
+            "required": true,
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/change_password"
+            }
+          }
+        ],
+        "tags": [
+          "auth"
+        ]
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/output_login"
+            }
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "사용자 로그인",
+        "operationId": "post_login",
+        "parameters": [
+          {
+            "name": "payload",
+            "required": true,
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/input_login"
+            }
+          }
+        ],
+        "tags": [
+          "auth"
+        ]
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "사용자 로그아웃",
+        "operationId": "post_logout",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "tags": [
+          "auth"
+        ]
+      }
+    },
+    "/health-check": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/health_check"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "Health check 결과 조회",
+        "operationId": "get_health_check",
+        "tags": [
+          "health"
+        ]
+      }
+    },
+    "/turbines": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/turbine_selection"
+            }
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "선택 가능한 터빈 목록 조회",
+        "operationId": "get_turbine_select",
+        "tags": [
+          "turbine selection"
+        ]
+      }
+    },
+    "/turbines/{turbine_id}/bearings/diagnosis": {
+      "parameters": [
+        {
+          "name": "turbine_id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/dashboard_diagnosis"
+            }
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "진단 이상 감지 내역",
+        "operationId": "get_dashboard_failure_info",
+        "tags": [
+          "dashboard"
+        ]
+      }
+    },
+    "/turbines/{turbine_id}/bearings/graphs/bode-polar": {
+      "parameters": [
+        {
+          "name": "turbine_id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/data_graph_bode_polar"
+            }
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "디테일: bode/polar 그래프",
+        "operationId": "get_data_graph_bode_polar_detail",
+        "parameters": [
+          {
+            "description": "특정 조회 시간",
+            "required": false,
+            "example": "2021-09-17 14:00",
+            "name": "acq_time",
+            "type": "string",
+            "in": "query"
+          }
+        ],
+        "tags": [
+          "data search"
+        ]
+      }
+    },
+    "/turbines/{turbine_id}/bearings/graphs/fft": {
+      "parameters": [
+        {
+          "name": "turbine_id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/data_graph_fft"
+            }
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "디테일: fft 그래프",
+        "operationId": "get_data_graph_fft_detail",
+        "parameters": [
+          {
+            "description": "특정 조회 시간",
+            "required": false,
+            "example": "2021-09-17 14:00",
+            "name": "acq_time",
+            "type": "string",
+            "in": "query"
+          }
+        ],
+        "tags": [
+          "data search"
+        ]
+      }
+    },
+    "/turbines/{turbine_id}/bearings/graphs/orbit": {
+      "parameters": [
+        {
+          "name": "turbine_id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/data_graph_overview_orbit"
+            }
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "디테일: orbit 그래프",
+        "operationId": "get_data_graph_orbit_detail",
+        "parameters": [
+          {
+            "description": "특정 조회 시간",
+            "required": false,
+            "example": "2021-09-17 14:00",
+            "name": "acq_time",
+            "type": "string",
+            "in": "query"
+          }
+        ],
+        "tags": [
+          "data search"
+        ]
+      }
+    },
+    "/turbines/{turbine_id}/bearings/graphs/overview": {
+      "parameters": [
+        {
+          "name": "turbine_id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/search_data_slider"
+            }
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "오버뷰: 데이터 조회를 위한 기간 조회",
+        "operationId": "get_data_graph_overview_search",
+        "parameters": [
+          {
+            "description": "조회 시작시간",
+            "required": false,
+            "example": "2021-09-17 14:00",
+            "name": "start_date",
+            "type": "string",
+            "in": "query"
+          },
+          {
+            "description": "조회 종료시간",
+            "required": false,
+            "example": "2021-09-17 14:00",
+            "name": "end_date",
+            "type": "string",
+            "in": "query"
+          }
+        ],
+        "tags": [
+          "data search"
+        ]
+      }
+    },
+    "/turbines/{turbine_id}/bearings/graphs/overview/bode-polar": {
+      "parameters": [
+        {
+          "name": "turbine_id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/data_graph_bode_polar"
+            }
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "오버뷰: 폴라 그래프 정보 조회",
+        "operationId": "get_data_graph_overview_bode_polar",
+        "parameters": [
+          {
+            "description": "특정 조회 시간",
+            "required": false,
+            "example": "2021-09-17 14:00",
+            "name": "acq_time",
+            "type": "string",
+            "in": "query"
+          }
+        ],
+        "tags": [
+          "data search"
+        ]
+      }
+    },
+    "/turbines/{turbine_id}/bearings/graphs/overview/fft": {
+      "parameters": [
+        {
+          "name": "turbine_id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/data_graph_fft"
+            }
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "오버뷰: FFT 그래프 정보 조회",
+        "operationId": "get_data_graph_overview_fft",
+        "parameters": [
+          {
+            "description": "특정 조회 시간",
+            "required": false,
+            "example": "2021-09-17 14:00",
+            "name": "acq_time",
+            "type": "string",
+            "in": "query"
+          }
+        ],
+        "tags": [
+          "data search"
+        ]
+      }
+    },
+    "/turbines/{turbine_id}/bearings/graphs/overview/orbit": {
+      "parameters": [
+        {
+          "name": "turbine_id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/data_graph_overview_orbit"
+            }
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "오버뷰: ORBIT 그래프 정보 조회",
+        "operationId": "get_data_graph_overview_orbit",
+        "parameters": [
+          {
+            "description": "특정 조회 시간",
+            "required": false,
+            "example": "2021-09-17 14:00",
+            "name": "acq_time",
+            "type": "string",
+            "in": "query"
+          }
+        ],
+        "tags": [
+          "data search"
+        ]
+      }
+    },
+    "/turbines/{turbine_id}/bearings/graphs/overview/shaft": {
+      "parameters": [
+        {
+          "name": "turbine_id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/data_graph_shaft_center"
+            }
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "오버뷰: Shaft center line 그래프 정보 조회",
+        "operationId": "get_data_graph_overview_shaft_center_line",
+        "parameters": [
+          {
+            "description": "특정 조회 시간",
+            "required": false,
+            "example": "2021-09-17 14:00",
+            "name": "acq_time",
+            "type": "string",
+            "in": "query"
+          }
+        ],
+        "tags": [
+          "data search"
+        ]
+      }
+    },
+    "/turbines/{turbine_id}/bearings/graphs/shaft": {
+      "parameters": [
+        {
+          "name": "turbine_id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/data_graph_shaft_center"
+            }
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "디테일: shaft centerline 그래프",
+        "operationId": "get_data_graph_shaft_detail",
+        "parameters": [
+          {
+            "description": "특정 조회 시간",
+            "required": false,
+            "example": "2021-09-17 14:00",
+            "name": "acq_time",
+            "type": "string",
+            "in": "query"
+          }
+        ],
+        "tags": [
+          "data search"
+        ]
+      }
+    },
+    "/turbines/{turbine_id}/bearings/graphs/shafts": {
+      "parameters": [
+        {
+          "name": "turbine_id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/data_graph_shaft_center"
+            }
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "디테일: shaft centerline 그래프",
+        "operationId": "get_data_graph_shaft_detail",
+        "parameters": [
+          {
+            "description": "특정 조회 시간",
+            "required": false,
+            "example": "2021-09-17 14:00",
+            "name": "acq_time",
+            "type": "string",
+            "in": "query"
+          }
+        ],
+        "tags": [
+          "data search"
+        ]
+      }
+    },
+    "/turbines/{turbine_id}/bearings/graphs/vibration": {
+      "parameters": [
+        {
+          "name": "turbine_id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/data_graph_overview_vibration"
+            }
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "디테일: vibration 그래프",
+        "operationId": "get_data_graph_vibration_detail",
+        "parameters": [
+          {
+            "description": "조회 시작시간",
+            "required": false,
+            "example": "2021-09-17 14:00",
+            "name": "start_date",
+            "type": "string",
+            "in": "query"
+          },
+          {
+            "description": "조회 종료시간",
+            "required": false,
+            "example": "2021-09-17 14:00",
+            "name": "end_date",
+            "type": "string",
+            "in": "query"
+          }
+        ],
+        "tags": [
+          "data search"
+        ]
+      }
+    },
+    "/turbines/{turbine_id}/bearings/status": {
+      "parameters": [
+        {
+          "name": "turbine_id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/dashboard_bearing"
+            }
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "bearing 정보",
+        "operationId": "get_dashboard_bearing_info",
+        "tags": [
+          "dashboard"
+        ]
+      }
+    },
+    "/turbines/{turbine_id}/inspection-logs": {
+      "parameters": [
+        {
+          "name": "turbine_id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "post": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/inspection_info"
+            }
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "점검 일지 등록",
+        "operationId": "post_inspection_log",
+        "parameters": [
+          {
+            "name": "payload",
+            "required": true,
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/create_body"
+            }
+          }
+        ],
+        "tags": [
+          "inspection log"
+        ]
+      }
+    },
+    "/turbines/{turbine_id}/inspection-logs/{inspection_id}": {
+      "parameters": [
+        {
+          "name": "turbine_id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        },
+        {
+          "name": "inspection_id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "put": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/inspection_info"
+            }
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "점검 일지 수정",
+        "operationId": "put_inspection_log_lookup",
+        "parameters": [
+          {
+            "name": "payload",
+            "required": true,
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/update_body"
+            }
+          }
+        ],
+        "tags": [
+          "inspection log"
+        ]
+      },
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/inspection_info"
+              }
+            }
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "점검 일지 조회",
+        "operationId": "get_inspection_log_lookup",
+        "tags": [
+          "inspection log"
+        ]
+      }
+    },
+    "/turbines/{turbine_id}/process-data/tags": {
+      "parameters": [
+        {
+          "name": "turbine_id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "post": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/tag_data_list"
+            }
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "태그 트렌드 그래프 조회",
+        "operationId": "post_tag_list",
+        "parameters": [
+          {
+            "name": "payload",
+            "required": true,
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/tag_trend_input"
+            }
+          }
+        ],
+        "tags": [
+          "tag trend"
+        ]
+      },
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/tag_list"
+            }
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "태그 목록 및 추천 태그 리스트 조회",
+        "operationId": "get_tag_list",
+        "tags": [
+          "tag trend"
+        ]
+      }
+    },
+    "/turbines/{turbine_id}/system-events": {
+      "parameters": [
+        {
+          "name": "turbine_id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/system_event_result"
+            }
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "시스템 이벤트 목록 조회",
+        "operationId": "get_system_event",
+        "parameters": [
+          {
+            "description": "조회 시작시간",
+            "required": false,
+            "example": "2021-09-17 14:00",
+            "name": "start_date",
+            "type": "string",
+            "in": "query"
+          },
+          {
+            "description": "조회 종료시간",
+            "required": false,
+            "example": "2021-09-17 14:00",
+            "name": "end_date",
+            "type": "string",
+            "in": "query"
+          },
+          {
+            "description": "페이지, 없으면 디폴트 1",
+            "required": false,
+            "example": 1,
+            "name": "page",
+            "type": "string",
+            "in": "query"
+          },
+          {
+            "description": "페이지당 개수, 없으면 디폴트 20",
+            "required": false,
+            "example": 20,
+            "name": "limit",
+            "type": "string",
+            "in": "query"
+          }
+        ],
+        "tags": [
+          "system event"
+        ]
+      }
+    },
+    "/turbines/{turbine_id}/trouble-shooting": {
+      "parameters": [
+        {
+          "name": "turbine_id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/trouble_shooting_resp"
+            }
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "트러블 슈팅 현황내역",
+        "operationId": "get_trouble_shooting_history",
+        "parameters": [
+          {
+            "description": "조회 시작시간",
+            "required": true,
+            "example": "2021-09-17 14:00",
+            "name": "start_date",
+            "type": "string",
+            "in": "query"
+          },
+          {
+            "description": "조회 종료시간",
+            "required": true,
+            "example": "2021-09-17 14:00",
+            "name": "end_date",
+            "type": "string",
+            "in": "query"
+          },
+          {
+            "description": "페이지, 없으면 디폴트 1",
+            "required": false,
+            "example": 1,
+            "name": "page",
+            "type": "string",
+            "in": "query"
+          },
+          {
+            "description": "페이지당 개수, 없으면 디폴트 20",
+            "required": false,
+            "example": 20,
+            "name": "limit",
+            "type": "string",
+            "in": "query"
+          }
+        ],
+        "tags": [
+          "trouble shooting"
+        ]
+      }
+    },
+    "/turbines/{turbine_id}/trouble-shooting/events": {
+      "parameters": [
+        {
+          "name": "turbine_id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/system_event_resp"
+            }
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "베어링 시스템 이벤트 보고서",
+        "operationId": "get_system_event",
+        "parameters": [
+          {
+            "description": "페이지, 없으면 디폴트 1",
+            "required": false,
+            "example": 1,
+            "name": "page",
+            "type": "string",
+            "in": "query"
+          },
+          {
+            "description": "페이지당 개수, 없으면 디폴트 20",
+            "required": false,
+            "example": 20,
+            "name": "limit",
+            "type": "string",
+            "in": "query"
+          }
+        ],
+        "tags": [
+          "trouble shooting"
+        ]
+      }
+    },
+    "/turbines/{turbine_id}/trouble-shooting/reports/{bearing_id}": {
+      "parameters": [
+        {
+          "name": "turbine_id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        },
+        {
+          "name": "bearing_id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/report_rest"
+            }
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "베어링 보고서",
+        "operationId": "get_bearing_report",
+        "parameters": [
+          {
+            "description": "조회 시간",
+            "required": true,
+            "example": "2021-09-17 14:00:01",
+            "name": "acq_time",
+            "type": "string",
+            "in": "query"
+          }
+        ],
+        "tags": [
+          "trouble shooting"
+        ]
+      }
+    },
+    "/turbines/{turbine_id}/trouble-shooting/tag-rank": {
+      "parameters": [
+        {
+          "name": "turbine_id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/tag_ranking_resp"
+            }
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "운전인자 태그 랭킹",
+        "operationId": "get_tag_rank",
+        "parameters": [
+          {
+            "description": "조회 시작시간",
+            "required": true,
+            "example": "2021-09-17 14:00",
+            "name": "start_date",
+            "type": "string",
+            "in": "query"
+          },
+          {
+            "description": "조회 종료시간",
+            "required": true,
+            "example": "2021-09-17 14:00",
+            "name": "end_date",
+            "type": "string",
+            "in": "query"
+          }
+        ],
+        "tags": [
+          "trouble shooting"
+        ]
+      }
+    },
+    "/turbines/{turbine_id}/turbine-setting": {
+      "parameters": [
+        {
+          "name": "turbine_id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "post": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/delete_success"
+            }
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "터빈 유저 이벤트 설정",
+        "operationId": "post_user_turbine_setting",
+        "parameters": [
+          {
+            "name": "payload",
+            "required": true,
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/user_event_body"
+            }
+          }
+        ],
+        "tags": [
+          "user event"
+        ]
+      }
+    },
+    "/turbines/{turbine_id}/user-events": {
+      "parameters": [
+        {
+          "name": "turbine_id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "post": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/user_event_list"
+            }
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "사용자 이벤트 등록",
+        "operationId": "post_user_event_lookup",
+        "parameters": [
+          {
+            "name": "payload",
+            "required": true,
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/user_event_body"
+            }
+          }
+        ],
+        "tags": [
+          "user event"
+        ]
+      },
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/user_event_result"
+            }
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "사용자 이벤트 목록 조회",
+        "operationId": "get_user_event_lookup",
+        "parameters": [
+          {
+            "description": "유저 아이디, 토큰 인증을 꺼놓은 관계로 임시로 받음 (중요)",
+            "required": false,
+            "example": 1,
+            "name": "user_id",
+            "type": "string",
+            "in": "query"
+          },
+          {
+            "description": "조회 시작시간",
+            "required": false,
+            "example": "2021-09-17 14:00",
+            "name": "start_date",
+            "type": "string",
+            "in": "query"
+          },
+          {
+            "description": "조회 종료시간",
+            "required": false,
+            "example": "2021-09-17 14:00",
+            "name": "end_date",
+            "type": "string",
+            "in": "query"
+          },
+          {
+            "description": "페이지, 없으면 전체목록 조회",
+            "required": false,
+            "example": 1,
+            "name": "page",
+            "type": "string",
+            "in": "query"
+          },
+          {
+            "description": "페이지당 개수, 없으면 전체목록 조회",
+            "required": false,
+            "example": 20,
+            "name": "limit",
+            "type": "string",
+            "in": "query"
+          },
+          {
+            "description": "검색어",
+            "required": false,
+            "example": "터빈",
+            "name": "search_keyword",
+            "type": "string",
+            "in": "query"
+          }
+        ],
+        "tags": [
+          "user event"
+        ]
+      }
+    },
+    "/turbines/{turbine_id}/user-events/{user_event_id}": {
+      "parameters": [
+        {
+          "name": "turbine_id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        },
+        {
+          "name": "user_event_id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "put": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/user_event_list"
+            }
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "사용자 이벤트 수정",
+        "operationId": "put_user_event",
+        "parameters": [
+          {
+            "name": "payload",
+            "required": true,
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/user_event_body"
+            }
+          }
+        ],
+        "tags": [
+          "user event"
+        ]
+      },
+      "delete": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/delete_success"
+            }
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "사용자 이벤트 삭제",
+        "operationId": "delete_user_event",
+        "tags": [
+          "user event"
+        ]
+      }
+    },
+    "/turbines/{turbine_id}/user-orbit-threshold": {
+      "parameters": [
+        {
+          "name": "turbine_id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "post": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/user_orbit_threshold"
+            }
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "사용자 orbit threshold 설정",
+        "operationId": "post_user_anomaly",
+        "parameters": [
+          {
+            "name": "payload",
+            "required": true,
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/user_orbit_threshold"
+            }
+          }
+        ],
+        "tags": [
+          "user anomaly"
+        ]
+      },
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/user_anomaly_list"
+            }
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "사용자 지정 이상 감지 내역 조회",
+        "operationId": "get_user_anomaly",
+        "parameters": [
+          {
+            "description": "사용자 아이디",
+            "required": false,
+            "example": 1,
+            "name": "user_id",
+            "type": "string",
+            "in": "query"
+          }
+        ],
+        "tags": [
+          "user anomaly"
+        ]
+      }
+    },
+    "/turbines/{turbine_id}/vibration-predict/bearings": {
+      "parameters": [
+        {
+          "name": "turbine_id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/vib_pred_dashboard"
+            }
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "단기 진동 예측 각 베어링별 데이터 조회",
+        "operationId": "get_vibration_predict",
+        "parameters": [
+          {
+            "description": "조회 시점 시간",
+            "required": false,
+            "example": "2021-09-17 14:00:01",
+            "name": "acq_time",
+            "type": "string",
+            "in": "query"
+          }
+        ],
+        "tags": [
+          "vibration prediction"
+        ]
+      }
+    },
+    "/turbines/{turbine_id}/vibration-predict/bearings/{bearing_id}": {
+      "parameters": [
+        {
+          "name": "turbine_id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        },
+        {
+          "name": "bearing_id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/vib_pred_model_resp"
+            }
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "각 베어링별 예측 모델 데이터 조회",
+        "operationId": "get_vibration_predict_models",
+        "parameters": [
+          {
+            "description": "조회 시작시간",
+            "required": false,
+            "example": "2021-09-17 14:00",
+            "name": "start_date",
+            "type": "string",
+            "in": "query"
+          },
+          {
+            "description": "조회 종료시간",
+            "required": false,
+            "example": "2021-09-17 14:00",
+            "name": "end_date",
+            "type": "string",
+            "in": "query"
+          }
+        ],
+        "tags": [
+          "vibration prediction"
+        ]
+      }
+    },
+    "/turbines/{turbine_id}/vibration-predict/overview": {
+      "parameters": [
+        {
+          "name": "turbine_id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/search_data_slider"
+            }
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "단기 진동 예측: 기간 조회 API",
+        "operationId": "get_vibration_predict_overview_search",
+        "parameters": [
+          {
+            "description": "조회 시작시간",
+            "required": false,
+            "example": "2021-09-17 14:00",
+            "name": "start_date",
+            "type": "string",
+            "in": "query"
+          },
+          {
+            "description": "조회 종료시간",
+            "required": false,
+            "example": "2021-09-17 14:00",
+            "name": "end_date",
+            "type": "string",
+            "in": "query"
+          }
+        ],
+        "tags": [
+          "vibration prediction"
+        ]
+      }
+    },
+    "/turbines/{turbine_id}/vibration-twin/bode-polar": {
+      "parameters": [
+        {
+          "name": "turbine_id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/data_graph_bode_polar"
+            }
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "베어링 진동관련 데이터 - 폴라 그래프 조회",
+        "operationId": "get_vibration_digital_twin_polar",
+        "parameters": [
+          {
+            "description": "특정 조회 시간",
+            "required": false,
+            "example": "2021-09-17 14:00",
+            "name": "acq_time",
+            "type": "string",
+            "in": "query"
+          }
+        ],
+        "tags": [
+          "vibration digital twin"
+        ]
+      }
+    },
+    "/turbines/{turbine_id}/vibration-twin/eccentricity": {
+      "parameters": [
+        {
+          "name": "turbine_id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/vibration_digital_twin_info"
+              }
+            }
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "베어링 진동관련 데이터 - Eccentricity 조회",
+        "operationId": "get_vibration_digital_twin",
+        "parameters": [
+          {
+            "description": "특정 조회 시간",
+            "required": false,
+            "example": "2021-09-17 14:00",
+            "name": "acq_time",
+            "type": "string",
+            "in": "query"
+          }
+        ],
+        "tags": [
+          "vibration digital twin"
+        ]
+      }
+    },
+    "/turbines/{turbine_id}/vibration-twin/fft": {
+      "parameters": [
+        {
+          "name": "turbine_id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/data_graph_fft"
+            }
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "베어링 진동 데이터 - FFT 그래프 조회",
+        "operationId": "get_vibration_digital_twin_fft",
+        "parameters": [
+          {
+            "description": "특정 조회 시간",
+            "required": false,
+            "example": "2021-09-17 14:00",
+            "name": "acq_time",
+            "type": "string",
+            "in": "query"
+          }
+        ],
+        "tags": [
+          "vibration digital twin"
+        ]
+      }
+    },
+    "/turbines/{turbine_id}/vibration-twin/overview": {
+      "parameters": [
+        {
+          "name": "turbine_id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/search_data_slider"
+            }
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "진동 디지털 트윈: 기간 조회 API",
+        "operationId": "get_vibration_predict_overview_search",
+        "parameters": [
+          {
+            "description": "조회 시작시간",
+            "required": false,
+            "example": "2021-09-17 14:00",
+            "name": "start_date",
+            "type": "string",
+            "in": "query"
+          },
+          {
+            "description": "조회 종료시간",
+            "required": false,
+            "example": "2021-09-17 14:00",
+            "name": "end_date",
+            "type": "string",
+            "in": "query"
+          }
+        ],
+        "tags": [
+          "vibration digital twin"
+        ]
+      }
+    },
+    "/users": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "사용자 정보 등록",
+        "operationId": "post_user",
+        "parameters": [
+          {
+            "name": "payload",
+            "required": true,
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/add_user"
+            }
+          }
+        ],
+        "tags": [
+          "user"
+        ]
+      },
+      "put": {
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "사용자 정보 수정",
+        "operationId": "put_user",
+        "parameters": [
+          {
+            "name": "payload",
+            "required": true,
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/user_info"
+            }
+          }
+        ],
+        "tags": [
+          "user"
+        ]
+      },
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/user_info"
+              }
+            }
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "사용자 정보 조회",
+        "operationId": "get_user",
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/users/{user_id}/authority": {
+      "parameters": [
+        {
+          "name": "user_id",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "put": {
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "201": {
+            "description": "Successfully created"
+          },
+          "202": {
+            "description": "Your request has been accepted and an asynchronous task is processing"
+          },
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized resources has been accessed"
+          },
+          "403": {
+            "description": "Authenticated clients access unauthorized resources"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "사용자 권한 수정",
+        "operationId": "put_user_authority",
+        "parameters": [
+          {
+            "name": "payload",
+            "required": true,
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/user_authority"
+            }
+          }
+        ],
+        "tags": [
+          "user"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "Turbine2.0 API Server",
+    "version": "1",
+    "description": "Turbine API Document"
+  },
+  "produces": [
+    "application/json"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "Authorization"
+    }
+  },
+  "security": [
+    {
+      "Bearer": [
+
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "name": "health",
+      "description": "health check"
+    },
+    {
+      "name": "user",
+      "description": "사용자 관리"
+    },
+    {
+      "name": "auth",
+      "description": "인증 관리"
+    },
+    {
+      "name": "turbine selection",
+      "description": "기기 선택 화면"
+    },
+    {
+      "name": "dashboard",
+      "description": "대시보드 화면"
+    },
+    {
+      "name": "vibration prediction",
+      "description": "단기 진동 예측 화면"
+    },
+    {
+      "name": "vibration digital twin",
+      "description": "진동 디지털 트윈 화면"
+    },
+    {
+      "name": "data search",
+      "description": "데이터 조회 화면"
+    },
+    {
+      "name": "trouble shooting",
+      "description": "트러블 슈팅 화면"
+    },
+    {
+      "name": "system event",
+      "description": "시스템 이벤트"
+    },
+    {
+      "name": "inspection log",
+      "description": "점검 일지"
+    },
+    {
+      "name": "user event",
+      "description": "사용자 이벤트"
+    },
+    {
+      "name": "user anomaly",
+      "description": "사용자 orbit threshold설정 및 진단 결과"
+    },
+    {
+      "name": "tag trend",
+      "description": "태그 트렌드 요청 API"
+    }
+  ],
+  "definitions": {
+    "health_check": {
+      "properties": {
+        "healthCheck": {
+          "type": "boolean",
+          "description": "health check",
+          "default": true
+        }
+      },
+      "type": "object"
+    },
+    "add_user": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/user_info"
+        },
+        {
+          "required": [
+            "userPassword"
+          ],
+          "properties": {
+            "userPassword": {
+              "type": "string",
+              "description": "사용자 비밀번호",
+              "example": "1234"
+            }
+          },
+          "type": "object"
+        }
+      ]
+    },
+    "user_info": {
+      "required": [
+        "authority",
+        "companyName",
+        "contractDueDate",
+        "email",
+        "id",
+        "phoneNum",
+        "registerDate",
+        "teamName",
+        "userId",
+        "userName"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "사용자 아이디",
+          "example": 1
+        },
+        "userId": {
+          "type": "string",
+          "description": "사용자 로그인 아이디",
+          "example": "OP1"
+        },
+        "userName": {
+          "type": "string",
+          "description": "사용자명",
+          "example": "장범찬"
+        },
+        "companyName": {
+          "type": "string",
+          "description": "회사명",
+          "example": "원프레딕트"
+        },
+        "teamName": {
+          "type": "string",
+          "description": "부서명",
+          "example": "Product2"
+        },
+        "phoneNum": {
+          "type": "string",
+          "description": "핸드폰 번호",
+          "example": "01012345678"
+        },
+        "email": {
+          "type": "string",
+          "description": "이메일",
+          "example": "abc123@onepredict.com"
+        },
+        "registerDate": {
+          "type": "string",
+          "format": "date",
+          "description": "등록일자",
+          "example": "2021-01-01"
+        },
+        "contractDueDate": {
+          "type": "string",
+          "format": "date",
+          "description": "계약만료일",
+          "example": "2021-01-01"
+        },
+        "authority": {
+          "type": "string",
+          "description": "사용자 권한",
+          "example": "admin"
+        }
+      },
+      "type": "object"
+    },
+    "user_authority": {
+      "required": [
+        "authority"
+      ],
+      "properties": {
+        "authority": {
+          "type": "string",
+          "description": "사용자 권한",
+          "example": "admin"
+        }
+      },
+      "type": "object"
+    },
+    "input_login": {
+      "required": [
+        "id",
+        "password"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "사용자 아이디"
+        },
+        "password": {
+          "type": "string",
+          "description": "사용자 비밀번호"
+        }
+      },
+      "type": "object"
+    },
+    "output_login": {
+      "properties": {
+        "accessToken": {
+          "type": "string",
+          "description": "인증 토큰",
+          "example": "eyJ0..."
+        },
+        "admin": {
+          "type": "boolean",
+          "description": "관리자 여부",
+          "example": false
+        },
+        "teamName": {
+          "type": "string",
+          "description": "팀 이름",
+          "default": "개발팀"
+        },
+        "email": {
+          "type": "string",
+          "description": "전자우편",
+          "example": "jaewoo.kim@onepredict.com"
+        }
+      },
+      "type": "object"
+    },
+    "change_password": {
+      "required": [
+        "after_changed_password",
+        "before_changed_password",
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "사용자 아이디"
+        },
+        "before_changed_password": {
+          "type": "string",
+          "description": "변경 전 비밀번호"
+        },
+        "after_changed_password": {
+          "type": "string",
+          "description": "변경 후 비밀번호"
+        }
+      },
+      "type": "object"
+    },
+    "turbine_selection": {
+      "properties": {
+        "units": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/turbine_dashboard_info"
+          }
+        }
+      },
+      "type": "object"
+    },
+    "turbine_dashboard_info": {
+      "required": [
+        "unitId",
+        "unitName"
+      ],
+      "properties": {
+        "unitId": {
+          "type": "integer",
+          "description": "터빈의 소속 호 아이디",
+          "example": 1
+        },
+        "unitName": {
+          "type": "string",
+          "description": "호기 이름",
+          "example": "1호기"
+        },
+        "turbines": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/turbine_state"
+          }
+        }
+      },
+      "type": "object"
+    },
+    "turbine_state": {
+      "required": [
+        "id",
+        "operationMode",
+        "siteInfoId",
+        "systemName",
+        "turbineName",
+        "turbineTagName",
+        "turbineType"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "터빈 아이디",
+          "example": 1
+        },
+        "systemName": {
+          "type": "string",
+          "description": "호기",
+          "example": "2-1"
+        },
+        "turbineName": {
+          "type": "string",
+          "description": "터빈 이름",
+          "example": "GS POWER G.T #1"
+        },
+        "turbineTagName": {
+          "type": "string",
+          "description": "터빈 태그 이름",
+          "example": "A.CHP2.S1"
+        },
+        "turbineType": {
+          "type": "string",
+          "description": "터빈 타입(gas/steam)",
+          "example": "gas"
+        },
+        "operationMode": {
+          "type": "integer",
+          "description": "운영모드(운영중지:0/운영중:1)",
+          "example": 1
+        },
+        "siteInfoId": {
+          "type": "integer",
+          "description": "터빈이 있는 SITE ID",
+          "example": 1
+        },
+        "rotationDirection": {
+          "type": "string",
+          "description": "회전 방향",
+          "example": "ccw"
+        },
+        "turbineFailures": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/failure_state"
+          }
+        }
+      },
+      "type": "object"
+    },
+    "failure_state": {
+      "required": [
+        "failureDetail",
+        "failureTime",
+        "id",
+        "state"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "해당 진단의 아이디",
+          "example": 1
+        },
+        "state": {
+          "type": "integer",
+          "description": "베어링 진단 상태(normal/warning/trip)",
+          "example": "normal"
+        },
+        "failureDetail": {
+          "type": "string",
+          "description": "고장내용",
+          "example": "진동크기 ISO B기준 이상"
+        },
+        "failureTime": {
+          "type": "string",
+          "description": "발생시점",
+          "example": "2021-01-01 00:00"
+        }
+      },
+      "type": "object"
+    },
+    "dashboard_bearing": {
+      "properties": {
+        "journalBearing": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/journal_bearing_info"
+          }
+        },
+        "thrustBearing": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/thrust_bearing_info"
+          }
+        },
+        "turbineFailureMode": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "example": "Oil Whip"
+          }
+        }
+      },
+      "type": "object"
+    },
+    "journal_bearing_info": {
+      "required": [
+        "bearingId",
+        "bearingName",
+        "temperature",
+        "vibXP2p",
+        "vibXPhase",
+        "vibYP2p",
+        "vibYPhase"
+      ],
+      "properties": {
+        "bearingId": {
+          "type": "integer",
+          "description": "journal 베어링 아이디",
+          "example": 1
+        },
+        "bearingName": {
+          "type": "string",
+          "description": "베어링 이름",
+          "example": "BRG#1"
+        },
+        "vibXP2p": {
+          "type": "number",
+          "description": "x축 peak to peak",
+          "example": 35.3
+        },
+        "vibYP2p": {
+          "type": "number",
+          "description": "y축 peak to peak",
+          "example": 35.3
+        },
+        "vibXPhase": {
+          "type": "number",
+          "description": "x축 phase",
+          "example": 35.3
+        },
+        "vibYPhase": {
+          "type": "number",
+          "description": "y축 phase",
+          "example": 35.3
+        },
+        "temperature": {
+          "type": "number",
+          "description": "베어링 온도",
+          "example": 35.3
+        }
+      },
+      "type": "object"
+    },
+    "thrust_bearing_info": {
+      "required": [
+        "activeBottomTemperature",
+        "activeTopTemperature",
+        "bearingId",
+        "bearingName",
+        "inactiveBottomTemperature",
+        "inactiveTopTemperature",
+        "position"
+      ],
+      "properties": {
+        "bearingId": {
+          "type": "integer",
+          "description": "thrust bearing id",
+          "example": 1
+        },
+        "bearingName": {
+          "type": "string",
+          "description": "thrust bearing id",
+          "example": "Thu BRG#1"
+        },
+        "position": {
+          "type": "number",
+          "description": "thrust bearing position",
+          "example": 1.5
+        },
+        "activeTopTemperature": {
+          "type": "number",
+          "description": "thrust bearing active top temperature",
+          "example": 260.2
+        },
+        "activeBottomTemperature": {
+          "type": "number",
+          "description": "thrust bearing active bottom temperature",
+          "example": 260.2
+        },
+        "inactiveTopTemperature": {
+          "type": "number",
+          "description": "thrust bearing inactive top temperature ",
+          "example": 260.2
+        },
+        "inactiveBottomTemperature": {
+          "type": "number",
+          "description": "thrust bearing inactive bottom temperature ",
+          "example": 260.2
+        }
+      },
+      "type": "object"
+    },
+    "dashboard_diagnosis": {
+      "properties": {
+        "turbineFailures": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dashboard_failure"
+          }
+        }
+      },
+      "type": "object"
+    },
+    "dashboard_failure": {
+      "required": [
+        "bearingName",
+        "failureDetail",
+        "failureTime",
+        "id",
+        "state"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "베어링 아이디",
+          "example": 1
+        },
+        "bearingName": {
+          "type": "string",
+          "description": "베어링 이름",
+          "example": "BRG#1"
+        },
+        "state": {
+          "type": "string",
+          "description": "베어링 진단 상태(normal/warning/trip)",
+          "example": "trip"
+        },
+        "failureDetail": {
+          "type": "string",
+          "description": "베어링 고장내용",
+          "example": "진동크기 ISO B기준 이상"
+        },
+        "failureTime": {
+          "type": "string",
+          "description": "진단시점",
+          "example": "2021-01-01 00:00"
+        }
+      },
+      "type": "object"
+    },
+    "search_data_slider": {
+      "properties": {
+        "totalCount": {
+          "type": "integer",
+          "example": 100
+        },
+        "searchResult": {
+          "$ref": "#/definitions/search_result"
+        }
+      },
+      "type": "object"
+    },
+    "search_result": {
+      "properties": {
+        "page": {
+          "type": "integer",
+          "example": 1
+        },
+        "acqTimes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "example": "2021-07-01 04:14"
+          }
+        }
+      },
+      "type": "object"
+    },
+    "vib_pred_dashboard": {
+      "properties": {
+        "gasGeneration": {
+          "$ref": "#/definitions/gas_generation_info"
+        },
+        "steamGeneration": {
+          "$ref": "#/definitions/steam_generation_info"
+        },
+        "journalBearing": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/journal_bearing_info"
+          }
+        },
+        "thrustBearing": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/thrust_bearing_info"
+          }
+        },
+        "predJournalBearing": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/journal_bearing_info"
+          }
+        },
+        "vibrationPrediction": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/vibration_prediction"
+          }
+        }
+      },
+      "type": "object"
+    },
+    "gas_generation_info": {
+      "required": [
+        "gasHeat",
+        "gasOutput",
+        "gasRpm"
+      ],
+      "properties": {
+        "gasRpm": {
+          "type": "number",
+          "description": "Gas turbine rpm",
+          "example": 3600
+        },
+        "gasOutput": {
+          "type": "number",
+          "description": "Gas turbine 출력량",
+          "example": 100
+        },
+        "gasHeat": {
+          "type": "number",
+          "description": "Gas turbine 열 생산량",
+          "example": 10
+        }
+      },
+      "type": "object"
+    },
+    "steam_generation_info": {
+      "required": [
+        "HipRpm",
+        "LpRpm",
+        "steamHeat",
+        "steamOutput"
+      ],
+      "properties": {
+        "HipRpm": {
+          "type": "number",
+          "description": "HP/IP turbine rpm",
+          "example": 3600
+        },
+        "LpRpm": {
+          "type": "number",
+          "description": "LP turbine rpm",
+          "example": 3600
+        },
+        "steamOutput": {
+          "type": "number",
+          "description": "steam turbine 출력량",
+          "example": 100
+        },
+        "steamHeat": {
+          "type": "number",
+          "description": "steam turbine 열 생산량",
+          "example": 10
+        }
+      },
+      "type": "object"
+    },
+    "vibration_prediction": {
+      "required": [
+        "bearingId",
+        "bearingName",
+        "xRiskPred10",
+        "xRiskPred20",
+        "xRiskPred30",
+        "yRiskPred10",
+        "yRiskPred20",
+        "yRiskPred30"
+      ],
+      "properties": {
+        "bearingId": {
+          "type": "integer",
+          "description": "thrust bearing id",
+          "example": 1
+        },
+        "bearingName": {
+          "type": "string",
+          "description": "thrust bearing id",
+          "example": "Thu BRG#1"
+        },
+        "xRiskPred10": {
+          "type": "number",
+          "description": "베어링 X 축 예측값 10분",
+          "example": 88.0
+        },
+        "yRiskPred10": {
+          "type": "number",
+          "description": "베어링 Y 축 예측값 10분",
+          "example": 76.0
+        },
+        "xRiskPred20": {
+          "type": "number",
+          "description": "베어링 X 축 예측값 10분",
+          "example": 88.0
+        },
+        "yRiskPred20": {
+          "type": "number",
+          "description": "베어링 Y 축 예측값 10분",
+          "example": 76.0
+        },
+        "xRiskPred30": {
+          "type": "number",
+          "description": "베어링 X 축 예측값 10분",
+          "example": 88.0
+        },
+        "yRiskPred30": {
+          "type": "number",
+          "description": "베어링 Y 축 예측값 10분",
+          "example": 76.0
+        }
+      },
+      "type": "object"
+    },
+    "vib_pred_model_resp": {
+      "required": [
+        "models"
+      ],
+      "properties": {
+        "models": {
+          "type": "array",
+          "description": "해당 베어링의 예측 데이터들",
+          "items": {
+            "$ref": "#/definitions/vib_pred_model"
+          }
+        }
+      },
+      "type": "object"
+    },
+    "vib_pred_model": {
+      "required": [
+        "description",
+        "modelId",
+        "name",
+        "timestamp",
+        "xCurrentPredict",
+        "xPredict",
+        "xPredictAccuracy",
+        "xRSquare",
+        "xReal",
+        "yCurrentPredict",
+        "yPredict",
+        "yPredictAccuracy",
+        "yRSquare",
+        "yReal"
+      ],
+      "properties": {
+        "modelId": {
+          "type": "integer",
+          "description": "모델 아이디",
+          "example": 1
+        },
+        "name": {
+          "type": "string",
+          "description": "모델 이름",
+          "example": "기본 모델"
+        },
+        "description": {
+          "type": "string",
+          "description": "모델 설명",
+          "example": "선형 회귀 모델"
+        },
+        "xRSquare": {
+          "type": "number",
+          "description": "R스퀘어 값",
+          "example": 0.5
+        },
+        "yRSquare": {
+          "type": "number",
+          "description": "R스퀘어 값",
+          "example": 0.5
+        },
+        "xPredictAccuracy": {
+          "type": "number",
+          "description": "예측 정확도",
+          "example": 0.9
+        },
+        "yPredictAccuracy": {
+          "type": "number",
+          "description": "예측 정확도",
+          "example": 0.9
+        },
+        "timestamp": {
+          "type": "array",
+          "description": "타임스탬프 값",
+          "items": {
+            "type": "string",
+            "example": "2019-02-01 23:59:59"
+          }
+        },
+        "xReal": {
+          "type": "array",
+          "description": "해당 베어링 X 실측값",
+          "items": {
+            "type": "number"
+          }
+        },
+        "xPredict": {
+          "type": "array",
+          "description": "해당 베어링 X 예측값",
+          "items": {
+            "type": "number"
+          }
+        },
+        "yReal": {
+          "type": "array",
+          "description": "해당 베어링 Y 실측값",
+          "items": {
+            "type": "number"
+          }
+        },
+        "yPredict": {
+          "type": "array",
+          "description": "해당 베어링 Y 예측값",
+          "items": {
+            "type": "number"
+          }
+        },
+        "xCurrentPredict": {
+          "description": "해당 베어링 X 최신 예측값",
+          "allOf": [
+            {
+              "$ref": "#/definitions/vib_current_pred"
+            }
+          ]
+        },
+        "yCurrentPredict": {
+          "description": "해당 베어링 Y 최신 예측값",
+          "allOf": [
+            {
+              "$ref": "#/definitions/vib_current_pred"
+            }
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "vib_current_pred": {
+      "required": [
+        "meanPred10",
+        "meanPred20",
+        "meanPred30",
+        "minusMeanPred10",
+        "minusMeanPred20",
+        "minusMeanPred30",
+        "plusMeanPred10",
+        "plusMeanPred20",
+        "plusMeanPred30"
+      ],
+      "properties": {
+        "plusMeanPred10": {
+          "type": "number",
+          "description": "10분 예측 값",
+          "example": 23.0
+        },
+        "meanPred10": {
+          "type": "number",
+          "description": "10분 예측 값",
+          "example": 23.0
+        },
+        "minusMeanPred10": {
+          "type": "number",
+          "description": "10분 예측 값",
+          "example": 23.0
+        },
+        "plusMeanPred20": {
+          "type": "number",
+          "description": "10분 예측 값",
+          "example": 23.0
+        },
+        "meanPred20": {
+          "type": "number",
+          "description": "10분 예측 값",
+          "example": 23.0
+        },
+        "minusMeanPred20": {
+          "type": "number",
+          "description": "10분 예측 값",
+          "example": 23.0
+        },
+        "plusMeanPred30": {
+          "type": "number",
+          "description": "10분 예측 값",
+          "example": 23.0
+        },
+        "meanPred30": {
+          "type": "number",
+          "description": "10분 예측 값",
+          "example": 23.0
+        },
+        "minusMeanPred30": {
+          "type": "number",
+          "description": "10분 예측 값",
+          "example": 23.0
+        }
+      },
+      "type": "object"
+    },
+    "vibration_digital_twin_info": {
+      "required": [
+        "acqTime"
+      ],
+      "properties": {
+        "acqTime": {
+          "type": "string",
+          "description": "계측시간",
+          "example": "2021-01-01T00:00"
+        },
+        "journalBearing": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/journal_bearing_info"
+          }
+        },
+        "thrustBearing": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/thrust_bearing_info"
+          }
+        },
+        "bearings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/bearing_orbit_data"
+          }
+        }
+      },
+      "type": "object"
+    },
+    "bearing_orbit_data": {
+      "required": [
+        "bearingId",
+        "bearingName",
+        "times",
+        "vibOrbit1X",
+        "vibOrbitRaw"
+      ],
+      "properties": {
+        "bearingId": {
+          "type": "integer",
+          "description": "journal 베어링 아이디",
+          "example": 1
+        },
+        "bearingName": {
+          "type": "string",
+          "description": "journal 베어링 아이디",
+          "example": "BRG #1"
+        },
+        "times": {
+          "type": "array",
+          "description": "계측 시간 값",
+          "items": {
+            "type": "number",
+            "example": 0.125
+          }
+        },
+        "vibOrbitRaw": {
+          "type": "array",
+          "description": "x,y축 통합 orbit data",
+          "items": {
+            "type": "object",
+            "example": [
+              0.1234,
+              0.5678
+            ]
+          }
+        },
+        "vibOrbit1X": {
+          "type": "array",
+          "description": "x, y축 orbit 1x data",
+          "items": {
+            "type": "object",
+            "example": [
+              0.1234,
+              0.5678
+            ]
+          }
+        }
+      },
+      "type": "object"
+    },
+    "data_graph_bode_polar": {
+      "required": [
+        "acqTime"
+      ],
+      "properties": {
+        "acqTime": {
+          "type": "string",
+          "description": "계측시점",
+          "example": "2021-01-01 00:00"
+        },
+        "bearings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/bearing_bode_polar_data"
+          }
+        }
+      },
+      "type": "object"
+    },
+    "bearing_bode_polar_data": {
+      "required": [
+        "bearingId",
+        "bearingName",
+        "rpm",
+        "vibVectorX",
+        "vibVectorY"
+      ],
+      "properties": {
+        "bearingId": {
+          "type": "integer",
+          "description": "journal 베어링 아이디",
+          "example": 1
+        },
+        "bearingName": {
+          "type": "string",
+          "description": "journal 베어링 아이디",
+          "example": "BRG #1"
+        },
+        "vibVectorX": {
+          "type": "array",
+          "description": "phase data([크기 (r), x phase값 (theta)])",
+          "items": {
+            "type": "object",
+            "example": [
+              1.4524,
+              156.0
+            ]
+          }
+        },
+        "vibVectorY": {
+          "type": "array",
+          "description": "([크기 (r), x phase값 (theta)])",
+          "items": {
+            "type": "object",
+            "example": [
+              1.0234,
+              220.0
+            ]
+          }
+        },
+        "rpm": {
+          "type": "number",
+          "description": "RPM 값, 진동값 한 주기 측정시 RPM 값"
+        }
+      },
+      "type": "object"
+    },
+    "data_graph_fft": {
+      "required": [
+        "acqTime"
+      ],
+      "properties": {
+        "acqTime": {
+          "type": "string",
+          "description": "계측시점",
+          "example": "2021-01-01 00:00"
+        },
+        "bearings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/bearing_fft_data"
+          }
+        }
+      },
+      "type": "object"
+    },
+    "bearing_fft_data": {
+      "required": [
+        "bearingId",
+        "bearingName",
+        "vibFftFull",
+        "vibXFft",
+        "vibYFft"
+      ],
+      "properties": {
+        "bearingId": {
+          "type": "integer",
+          "description": "journal 베어링 아이디",
+          "example": 1
+        },
+        "bearingName": {
+          "type": "string",
+          "description": "journal 베어링 아이디",
+          "example": "BRG #1"
+        },
+        "vibXFft": {
+          "description": "x축 fft data",
+          "allOf": [
+            {
+              "$ref": "#/definitions/data_fft_point"
+            }
+          ]
+        },
+        "vibYFft": {
+          "description": "y축 fft data",
+          "allOf": [
+            {
+              "$ref": "#/definitions/data_fft_point"
+            }
+          ]
+        },
+        "vibFftFull": {
+          "description": "FFT full spectrum data",
+          "allOf": [
+            {
+              "$ref": "#/definitions/data_fft_point"
+            }
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "data_fft_point": {
+      "properties": {
+        "x": {
+          "type": "array",
+          "description": "graph x 값",
+          "items": {
+            "type": "number",
+            "example": 0.1234
+          }
+        },
+        "y": {
+          "type": "array",
+          "description": "graph x 값",
+          "items": {
+            "type": "number",
+            "example": 0.1234
+          }
+        }
+      },
+      "type": "object"
+    },
+    "data_graph_overview_orbit": {
+      "required": [
+        "acqTime"
+      ],
+      "properties": {
+        "acqTime": {
+          "type": "string",
+          "description": "계측시점",
+          "example": "2021-01-01 00:00"
+        },
+        "bearings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/bearing_orbit_data"
+          }
+        }
+      },
+      "type": "object"
+    },
+    "data_graph_shaft_center": {
+      "required": [
+        "acqTime"
+      ],
+      "properties": {
+        "acqTime": {
+          "type": "string",
+          "description": "계측시점",
+          "example": "2021-01-01 00:00"
+        },
+        "bearings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/bearing_shaft_centerline_data"
+          }
+        }
+      },
+      "type": "object"
+    },
+    "bearing_shaft_centerline_data": {
+      "required": [
+        "bearingId",
+        "bearingName",
+        "rpm",
+        "shaftCenter"
+      ],
+      "properties": {
+        "bearingId": {
+          "type": "integer",
+          "description": "journal 베어링 아이디",
+          "example": 1
+        },
+        "bearingName": {
+          "type": "string",
+          "description": "journal 베어링 아이디",
+          "example": "BRG #1"
+        },
+        "shaftCenter": {
+          "type": "array",
+          "description": "x, y축 shaft center line data",
+          "items": {
+            "type": "object",
+            "example": [
+              0.1234,
+              0.5678
+            ]
+          }
+        },
+        "rpm": {
+          "type": "number",
+          "description": "shaft center rpm 데이터",
+          "example": "85.1"
+        }
+      },
+      "type": "object"
+    },
+    "data_graph_overview_vibration": {
+      "properties": {
+        "bearings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/bearing_p2p_data"
+          }
+        },
+        "timestamps": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "example": "2021-11-01 13:48"
+          }
+        }
+      },
+      "type": "object"
+    },
+    "bearing_p2p_data": {
+      "required": [
+        "bearingId",
+        "bearingName",
+        "vibXP2p",
+        "vibYP2p"
+      ],
+      "properties": {
+        "bearingId": {
+          "type": "integer",
+          "description": "journal 베어링 아이디",
+          "example": 1
+        },
+        "bearingName": {
+          "type": "string",
+          "description": "journal 베어링 아이디",
+          "example": "BRG #1"
+        },
+        "vibXP2p": {
+          "type": "array",
+          "description": "베어링 X축 p2p 데이터",
+          "items": {
+            "type": "object",
+            "example": [
+              0.1234,
+              0.5678
+            ]
+          }
+        },
+        "vibYP2p": {
+          "type": "array",
+          "description": "베어링 Y축 p2p 데이터",
+          "items": {
+            "type": "object",
+            "example": [
+              0.1234,
+              0.5678
+            ]
+          }
+        }
+      },
+      "type": "object"
+    },
+    "trouble_shooting_resp": {
+      "required": [
+        "limit",
+        "page",
+        "totalCount"
+      ],
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "현재 페이지",
+          "example": 1
+        },
+        "limit": {
+          "type": "integer",
+          "description": "페이지당 게시물 수",
+          "example": 1
+        },
+        "totalCount": {
+          "type": "integer",
+          "description": "총 게시물 개수",
+          "example": 10
+        },
+        "troubleShootings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/trouble_shooting_list"
+          }
+        }
+      },
+      "type": "object"
+    },
+    "trouble_shooting_list": {
+      "required": [
+        "acqTime"
+      ],
+      "properties": {
+        "acqTime": {
+          "type": "string",
+          "description": "해당 베어링 정보 측정 시간",
+          "example": "2019-03-01 09:33:01"
+        },
+        "journalBearings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/journal_bearing_info"
+          }
+        }
+      },
+      "type": "object"
+    },
+    "tag_ranking_resp": {
+      "properties": {
+        "tagRankInfo": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/tag_rank"
+          }
+        },
+        "resolutionInfo": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/resolution_info"
+          }
+        }
+      },
+      "type": "object"
+    },
+    "tag_rank": {
+      "required": [
+        "count",
+        "tagCode"
+      ],
+      "properties": {
+        "tagCode": {
+          "type": "string",
+          "description": "태그 코드",
+          "example": "S1.BBX"
+        },
+        "count": {
+          "type": "integer",
+          "description": "태그 코드 등장 횟수",
+          "example": 7
+        }
+      },
+      "type": "object"
+    },
+    "resolution_info": {
+      "required": [
+        "acqTime",
+        "solvedCount",
+        "unSolvedCount"
+      ],
+      "properties": {
+        "acqTime": {
+          "type": "string",
+          "description": "해당 시간",
+          "example": "2019-03-01 00:00:00"
+        },
+        "solvedCount": {
+          "type": "integer",
+          "description": "해결된 이슈",
+          "example": 7
+        },
+        "unSolvedCount": {
+          "type": "integer",
+          "description": "미해결된 이슈",
+          "example": 7
+        }
+      },
+      "type": "object"
+    },
+    "report_rest": {
+      "properties": {
+        "report": {
+          "$ref": "#/definitions/report_resp"
+        }
+      },
+      "type": "object"
+    },
+    "report_resp": {
+      "required": [
+        "acqTime",
+        "bearingId",
+        "bearingName",
+        "fft",
+        "fft_raw",
+        "phase",
+        "processData",
+        "recommended",
+        "rootCause",
+        "rpm",
+        "status"
+      ],
+      "properties": {
+        "bearingId": {
+          "type": "integer",
+          "description": "베어링 아이디",
+          "example": 3
+        },
+        "bearingName": {
+          "type": "string",
+          "description": "베어링 이름",
+          "example": "BRG #1"
+        },
+        "acqTime": {
+          "type": "string",
+          "description": "계측 시간",
+          "example": "BRG #1"
+        },
+        "rpm": {
+          "type": "number",
+          "description": "RPM",
+          "example": 80.1
+        },
+        "status": {
+          "type": "string",
+          "description": "베어링 상태",
+          "example": "Normal"
+        },
+        "rootCause": {
+          "type": "string",
+          "description": "원인",
+          "example": "베어링 주변 oil deflector 산화물의 rubbing으로 인해 베어링 메탈 온도 상승, 주로 catback 현상으로 나타남"
+        },
+        "recommended": {
+          "type": "string",
+          "description": "주로 설비 정지 후 저속 회전상태에서 회전체 warm up",
+          "example": "Normal"
+        },
+        "processData": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "example": "TAG VALUE.."
+          }
+        },
+        "fft": {
+          "type": "string",
+          "description": "FFT 관련 정보",
+          "example": ""
+        },
+        "phase": {
+          "type": "string",
+          "description": "Phase 값",
+          "example": "Phase X: 0, Phase Y: 0"
+        },
+        "orbit_raw": {
+          "$ref": "#/definitions/bearing_orbit_data"
+        },
+        "fft_raw": {
+          "$ref": "#/definitions/bearing_fft_data"
+        }
+      },
+      "type": "object"
+    },
+    "system_event_resp": {
+      "properties": {
+        "systemEvents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/system_event_obj"
+          }
+        }
+      },
+      "type": "object"
+    },
+    "system_event_obj": {
+      "properties": {
+        "vibrationId": {
+          "type": "integer"
+        },
+        "turbineId": {
+          "type": "integer"
+        },
+        "bearingId": {
+          "type": "integer"
+        },
+        "bearingInfo": {
+          "type": "string"
+        },
+        "acqTime": {
+          "type": "string"
+        },
+        "iso": {
+          "type": "integer"
+        },
+        "result": {
+          "type": "string"
+        },
+        "rootCause": {
+          "type": "string"
+        },
+        "recommended": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "system_event_result": {
+      "properties": {
+        "page": {
+          "type": "integer",
+          "example": 1
+        },
+        "limit": {
+          "type": "integer",
+          "example": 10
+        },
+        "totalCount": {
+          "type": "integer",
+          "example": 100
+        },
+        "turbineFailures": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/system_event_list"
+          }
+        }
+      },
+      "type": "object"
+    },
+    "system_event_list": {
+      "required": [
+        "autoReportId",
+        "autoReportState",
+        "bearingId",
+        "chargePerson",
+        "diagnosisTarget",
+        "endTime",
+        "failureDetail",
+        "id",
+        "inspectionInfoId",
+        "isChecked",
+        "isInspected",
+        "relatedFactorName",
+        "startTime",
+        "state",
+        "turbineId",
+        "vibrationChar"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "이벤트 아이디",
+          "example": 1
+        },
+        "turbineId": {
+          "type": "integer",
+          "description": "터빈 아이디",
+          "example": 1
+        },
+        "bearingId": {
+          "type": "integer",
+          "description": "베어링 아이디",
+          "example": 1
+        },
+        "diagnosisTarget": {
+          "type": "string",
+          "description": "진단대상(설비:터빈/위치:베어링)",
+          "example": "ST/BRG1"
+        },
+        "startTime": {
+          "type": "string",
+          "description": "이벤트 시작 시간(고장 진단 시간)",
+          "example": "2021-01-01 00:00"
+        },
+        "state": {
+          "type": "string",
+          "description": "베어링 진단 상태(normal/warning/trip)",
+          "example": "trip"
+        },
+        "failureDetail": {
+          "type": "string",
+          "description": "이벤트 내용",
+          "example": "정상진동 크기(80um) 대비 53um 증가"
+        },
+        "vibrationChar": {
+          "type": "string",
+          "description": "진동 특성",
+          "example": "1x 성분 20%증가, 질량 불평형 의심"
+        },
+        "relatedFactorName": {
+          "type": "string",
+          "description": "연관 태그명",
+          "example": "L/O Pressure"
+        },
+        "endTime": {
+          "type": "string",
+          "description": "이벤트 종료 시간",
+          "example": "2021-01-01 00:00"
+        },
+        "chargePerson": {
+          "type": "string",
+          "description": "담당자",
+          "example": "공준상"
+        },
+        "isChecked": {
+          "type": "boolean",
+          "description": "담당자 확인 여부",
+          "example": true
+        },
+        "inspectionInfoId": {
+          "type": "integer",
+          "description": "점검일지 아이디",
+          "example": 1
+        },
+        "isInspected": {
+          "type": "boolean",
+          "description": "점검일지 유/무",
+          "example": true
+        },
+        "autoReportId": {
+          "type": "integer",
+          "description": "자동보고서 아이디",
+          "example": 1
+        },
+        "autoReportState": {
+          "type": "boolean",
+          "description": "자동보고서 해결내역(완료: True/미완료: False)",
+          "example": true
+        }
+      },
+      "type": "object"
+    },
+    "update_body": {
+      "required": [
+        "actionDetail",
+        "inspectionDetail",
+        "inspectionTime",
+        "inspector",
+        "title"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "점검일지 제목",
+          "example": "상세 점검 일지"
+        },
+        "inspector": {
+          "type": "string",
+          "description": "작성자",
+          "example": "공준상"
+        },
+        "inspectionTime": {
+          "type": "string",
+          "description": "점검일자",
+          "example": "2021-10-30"
+        },
+        "inspectionDetail": {
+          "type": "string",
+          "description": "상세 진단 내용",
+          "example": "1번 베어링 이상 진단 발견"
+        },
+        "actionDetail": {
+          "type": "string",
+          "description": "조치 내용",
+          "example": "보고서 권고에 따라 상부 보고 후 교체 요청"
+        }
+      },
+      "type": "object"
+    },
+    "inspection_info": {
+      "required": [
+        "actionDetail",
+        "diagnosisTarget",
+        "id",
+        "inspectionDetail",
+        "inspectionTime",
+        "inspector",
+        "title",
+        "turbineFailureId",
+        "turbineId"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "점검일지 아이디",
+          "example": 1
+        },
+        "turbineId": {
+          "type": "integer",
+          "description": "터빈 아이디",
+          "example": 1
+        },
+        "turbineFailureId": {
+          "type": "integer",
+          "description": "터빈 고장 이벤트 ID",
+          "example": 1
+        },
+        "diagnosisTarget": {
+          "type": "string",
+          "description": "진단대상",
+          "example": "ST/BRG1"
+        },
+        "inspectionTime": {
+          "type": "string",
+          "description": "점검일자",
+          "example": "2021-01-01"
+        },
+        "inspector": {
+          "type": "string",
+          "description": "작성자",
+          "example": "공준상"
+        },
+        "title": {
+          "type": "string",
+          "description": "제목",
+          "example": "점검일지 제목"
+        },
+        "inspectionDetail": {
+          "type": "string",
+          "description": "진단내용",
+          "example": "진동 variance 정상대비 30% 증가"
+        },
+        "actionDetail": {
+          "type": "string",
+          "description": "조치내용",
+          "example": "조치하세요"
+        }
+      },
+      "type": "object"
+    },
+    "create_body": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/update_body"
+        },
+        {
+          "required": [
+            "turbineFailureId",
+            "turbineId"
+          ],
+          "properties": {
+            "turbineId": {
+              "type": "integer",
+              "description": "터빈 아이디",
+              "example": 1
+            },
+            "turbineFailureId": {
+              "type": "integer",
+              "description": "터빈 고장 이벤트 아이디",
+              "example": 13
+            }
+          },
+          "type": "object"
+        }
+      ]
+    },
+    "user_event_body": {
+      "required": [
+        "bearingId",
+        "orbitThreshold"
+      ],
+      "properties": {
+        "bearingId": {
+          "type": "integer",
+          "description": "베어링 아이디",
+          "example": 1
+        },
+        "orbitThreshold": {
+          "type": "array",
+          "description": "x,y축 통합 orbit data",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "example": 0.1
+            }
+          }
+        }
+      },
+      "type": "object"
+    },
+    "user_event_list": {
+      "required": [
+        "endTime",
+        "eventDetail",
+        "eventName",
+        "id",
+        "startTime"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "이벤트 아이디",
+          "example": 1
+        },
+        "eventName": {
+          "type": "string",
+          "description": "이벤트 명",
+          "example": "시운전 기동 이후 트립"
+        },
+        "startTime": {
+          "type": "string",
+          "description": "이벤트 시작 시간",
+          "example": "2021-01-01 00:00"
+        },
+        "endTime": {
+          "type": "string",
+          "description": "이벤트 종료 시간",
+          "example": "2021-01-01 00:00"
+        },
+        "eventDetail": {
+          "type": "string",
+          "description": "이벤트 내용",
+          "example": "기동 중 트립, 2500rpm 부근"
+        }
+      },
+      "type": "object"
+    },
+    "user_event_result": {
+      "properties": {
+        "page": {
+          "type": "integer",
+          "example": 1
+        },
+        "limit": {
+          "type": "integer",
+          "example": 10
+        },
+        "totalCount": {
+          "type": "integer",
+          "example": 100
+        },
+        "userEventList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/user_event_list"
+          }
+        }
+      },
+      "type": "object"
+    },
+    "delete_success": {
+      "required": [
+        "message"
+      ],
+      "properties": {
+        "message": {
+          "type": "string",
+          "description": "응답 메시지",
+          "example": "success"
+        }
+      },
+      "type": "object"
+    },
+    "user_orbit_threshold": {
+      "required": [
+        "bearingId",
+        "userId"
+      ],
+      "properties": {
+        "userId": {
+          "type": "integer",
+          "description": "사용자 아이디",
+          "example": 1
+        },
+        "bearingId": {
+          "type": "integer",
+          "description": "베어링 아이디",
+          "example": 1
+        },
+        "orbitThreshold": {
+          "$ref": "#/definitions/orbit_threshold"
+        }
+      },
+      "type": "object"
+    },
+    "orbit_threshold": {
+      "required": [
+        "centerX",
+        "centerY",
+        "radiusX",
+        "radiusY",
+        "rotationValue"
+      ],
+      "properties": {
+        "centerX": {
+          "type": "number",
+          "description": "중심점 X",
+          "example": 45
+        },
+        "centerY": {
+          "type": "number",
+          "description": "중심점 Y",
+          "example": 45
+        },
+        "radiusX": {
+          "type": "number",
+          "description": "반지름 X",
+          "example": 45
+        },
+        "radiusY": {
+          "type": "number",
+          "description": "반지름 Y",
+          "example": 45
+        },
+        "rotationValue": {
+          "type": "number",
+          "description": "회전 정도",
+          "example": 45
+        }
+      },
+      "type": "object"
+    },
+    "user_anomaly_list": {
+      "required": [
+        "bearingId",
+        "bearingName",
+        "failureDetail",
+        "failureTime",
+        "state"
+      ],
+      "properties": {
+        "bearingId": {
+          "type": "string",
+          "description": "베어링 아이디",
+          "example": 1
+        },
+        "bearingName": {
+          "type": "string",
+          "description": "베어링 이름",
+          "example": "BRG#1"
+        },
+        "state": {
+          "type": "string",
+          "description": "베어링 상태(Warning, Trip)",
+          "example": "Warning"
+        },
+        "failureTime": {
+          "type": "string",
+          "description": "진단시간",
+          "example": "2021-09-17 14:00"
+        },
+        "failureDetail": {
+          "type": "string",
+          "description": "베어링 상태(Warning, Trip)",
+          "example": "2-1 ST BRG#1 사용자 지정 Orbit 범위 초과"
+        }
+      },
+      "type": "object"
+    },
+    "tag_trend_input": {
+      "properties": {
+        "start_date": {
+          "type": "string",
+          "example": "2021-07-01"
+        },
+        "end_date": {
+          "type": "string",
+          "example": "2021-07-08"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "example": "TURB_V1X"
+          }
+        }
+      },
+      "type": "object"
+    },
+    "tag_data_list": {
+      "properties": {
+        "tagData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/tag_data_nested"
+          }
+        },
+        "timestamps": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "example": "2021-07-01 01:14"
+          }
+        }
+      },
+      "type": "object"
+    },
+    "tag_data_nested": {
+      "properties": {
+        "tagCode": {
+          "type": "string",
+          "example": "TURB1X"
+        },
+        "tagValue": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "example": 210.71
+          }
+        }
+      },
+      "type": "object"
+    },
+    "tag_list": {
+      "properties": {
+        "tags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/tag_nested"
+          }
+        },
+        "recommendTags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "example": "TURB"
+          }
+        }
+      },
+      "type": "object"
+    },
+    "tag_nested": {
+      "properties": {
+        "category": {
+          "type": "string",
+          "example": "TURB"
+        },
+        "tagData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/tag_desc_nested"
+          }
+        }
+      },
+      "type": "object"
+    },
+    "tag_desc_nested": {
+      "properties": {
+        "code": {
+          "type": "string",
+          "example": "S1.TURBX"
+        },
+        "description": {
+          "type": "string",
+          "example": "IP/LP helth check ..."
+        }
+      },
+      "type": "object"
+    }
+  },
+  "responses": {
+    "ParseError": {
+      "description": "When a mask can't be parsed"
+    },
+    "MaskError": {
+      "description": "When any error occurs on mask"
+    }
+  }
+}
