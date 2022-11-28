@@ -1,0 +1,1239 @@
+openapi: 3.0.0
+info:
+  title: mdm/materials/materials.proto
+  version: version not set
+tags:
+  - name: MaterialService
+  - name: PriceHistoriesService
+  - name: ProductService
+  - name: PurchasePriceService
+  - name: SalesPriceService
+  - name: SuppliersService
+paths:
+  /admin/v1/materials:
+    get:
+      operationId: MaterialService_GetMaterialList
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/servicesGetMaterialListResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/rpcStatus"
+      tags:
+        - MaterialService
+    post:
+      operationId: MaterialService_PostMaterials
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/servicesPostMaterialsResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/rpcStatus"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/servicesPostMaterialsRequest"
+        required: true
+      tags:
+        - MaterialService
+  /admin/v1/materials/purchase-prices:
+    get:
+      operationId: PriceHistoriesService_GetMaterialPurchasePriceList
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/purchase_pricesGetMaterialPurchasePrice\
+                  ListResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/rpcStatus"
+      tags:
+        - PriceHistoriesService
+    post:
+      operationId: PriceHistoriesService_PostMaterialPurchasePrice
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/purchase_pricesPostMaterialPurchasePric\
+                  eResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/rpcStatus"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/purchase_pricesPostMaterialPurchasePriceR\
+                equest"
+        required: true
+      tags:
+        - PriceHistoriesService
+  /admin/v1/materials/purchase-prices/histories:
+    get:
+      operationId: PriceHistoriesService_GetPurchasePriceHistories
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/materialspurchase_pricesGetPurchasePric\
+                  eHistoriesResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/rpcStatus"
+      parameters:
+        - name: materialCode
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: supplierCode
+          in: query
+          required: false
+          schema:
+            type: string
+      tags:
+        - PriceHistoriesService
+  "/admin/v1/materials/purchase-prices/{id}":
+    patch:
+      operationId: PriceHistoriesService_PatchMaterialPurchasePrice
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/purchase_pricesPatchMaterialPurchasePri\
+                  ceResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/rpcStatus"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        $ref: "#/components/requestBodies/PriceHistoriesService_PatchMaterialPurcha\
+          sePriceBody"
+      tags:
+        - PriceHistoriesService
+  /admin/v1/products:
+    get:
+      operationId: ProductService_GetProductList
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/servicesGetProductListResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/rpcStatus"
+      tags:
+        - ProductService
+    post:
+      operationId: ProductService_PostProducts
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/servicesPostProductsResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/rpcStatus"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/servicesPostProductsRequest"
+        required: true
+      tags:
+        - ProductService
+  /admin/v1/products/purchase-prices:
+    get:
+      operationId: PurchasePriceService_GetProductPurchasePriceList
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/purchase_pricesGetProductPurchasePriceL\
+                  istResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/rpcStatus"
+      tags:
+        - PurchasePriceService
+    post:
+      operationId: PurchasePriceService_PostProductPurchasePrice
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/purchase_pricesPostProductPurchasePrice\
+                  Response"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/rpcStatus"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/purchase_pricesPostProductPurchasePriceRe\
+                quest"
+        required: true
+      tags:
+        - PurchasePriceService
+  /admin/v1/products/purchase-prices/histories:
+    get:
+      operationId: PurchasePriceService_GetPurchasePriceHistories
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/purchase_pricesGetPurchasePriceHistorie\
+                  sResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/rpcStatus"
+      parameters:
+        - name: productCode
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: supplierCode
+          in: query
+          required: false
+          schema:
+            type: string
+      tags:
+        - PurchasePriceService
+  "/admin/v1/products/purchase-prices/{id}":
+    patch:
+      operationId: PurchasePriceService_PatchProductPurchasePrice
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/purchase_pricesPatchProductPurchasePric\
+                  eResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/rpcStatus"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        $ref: "#/components/requestBodies/PriceHistoriesService_PatchMaterialPurcha\
+          sePriceBody"
+      tags:
+        - PurchasePriceService
+  /admin/v1/products/sales-prices:
+    get:
+      operationId: SalesPriceService_GetProductSalesPriceList
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sales_pricesGetProductSalesPriceListRes\
+                  ponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/rpcStatus"
+      tags:
+        - SalesPriceService
+    post:
+      operationId: SalesPriceService_PostProductSalesPrice
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sales_pricesPostProductSalesPriceRespon\
+                  se"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/rpcStatus"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/sales_pricesPostProductSalesPriceRequest"
+        required: true
+      tags:
+        - SalesPriceService
+  /admin/v1/products/sales-prices/histories:
+    get:
+      operationId: SalesPriceService_GetSalesPriceHistories
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sales_pricesGetSalesPriceHistoriesRespo\
+                  nse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/rpcStatus"
+      parameters:
+        - name: productCode
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: salesChannel
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - NA
+              - ON_OFFLINE
+              - ONLINE
+              - OFFLINE
+            default: NA
+      tags:
+        - SalesPriceService
+  "/admin/v1/products/sales-prices/{id}":
+    patch:
+      operationId: SalesPriceService_PatchProductSalesPrice
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sales_pricesPatchProductSalesPriceRespo\
+                  nse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/rpcStatus"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                salesPrice:
+                  type: integer
+                  format: int32
+                startAt:
+                  type: string
+        required: true
+      tags:
+        - SalesPriceService
+  /admin/v1/suppliers:
+    get:
+      operationId: SuppliersService_GetSuppliers
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/servicesGetSupplierListResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/rpcStatus"
+      tags:
+        - SuppliersService
+    post:
+      operationId: SuppliersService_PostSuppliers
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/servicesPostSuppliersResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/rpcStatus"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/servicesPostSuppliersRequest"
+        required: true
+      tags:
+        - SuppliersService
+components:
+  requestBodies:
+    PriceHistoriesService_PatchMaterialPurchasePriceBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              purchasePrice:
+                type: integer
+                format: int32
+              startAt:
+                type: string
+      required: true
+  schemas:
+    commonBaseUnitEnum:
+      type: string
+      enum:
+        - NA
+        - PALLETTE
+        - BOX
+        - EA
+        - KG
+        - L
+        - ROLL
+      default: NA
+    commonBrandTypeEnum:
+      type: string
+      enum:
+        - NA
+        - PURE
+        - SAFE
+        - SUPER_FRESH
+        - BABY
+      default: NA
+    commonCBM:
+      type: object
+      properties:
+        width:
+          type: number
+          format: float
+        depth:
+          type: number
+          format: float
+        height:
+          type: number
+          format: float
+    commonPriceHistories:
+      type: object
+      properties:
+        price:
+          type: integer
+          format: int32
+        startAt:
+          type: string
+        endAt:
+          type: string
+        register:
+          type: string
+    commonProcurementTypeEnum:
+      type: string
+      enum:
+        - NA
+        - PRODUCTION
+        - PURCHASE
+      default: NA
+    commonProductTypeEnum:
+      type: string
+      enum:
+        - NA
+        - PRODUCTS
+        - GOODS
+      default: NA
+    commonSalesChannelEnum:
+      type: string
+      enum:
+        - NA
+        - ON_OFFLINE
+        - ONLINE
+        - OFFLINE
+      default: NA
+    commonStorageTypeEnum:
+      type: string
+      enum:
+        - NA
+        - COLD
+        - FREEZE
+        - ROOM
+      default: NA
+    commonSupplyStatusEnum:
+      type: string
+      enum:
+        - NA
+        - USED
+        - UNUSED
+        - OFF_SEASON
+        - ON_SEASON
+      default: NA
+    materialspurchase_pricesGetPurchasePriceHistoriesResponse:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/materialspurchase_pricesPriceHistories"
+    materialspurchase_pricesPriceHistories:
+      type: object
+      properties:
+        price:
+          type: integer
+          format: int32
+        startAt:
+          type: string
+        endAt:
+          type: string
+        register:
+          type: string
+    materialsservicesBaseUnitEnum:
+      type: string
+      enum:
+        - NA
+        - PALLETTE
+        - BOX
+        - EA
+        - KG
+        - L
+        - ROLL
+      default: NA
+    materialsservicesBrandTypeEnum:
+      type: string
+      enum:
+        - NA
+        - PURE
+        - SAFE
+        - SUPER_FRESH
+        - BABY
+      default: NA
+    materialsservicesCBM:
+      type: object
+      properties:
+        width:
+          type: number
+          format: float
+        depth:
+          type: number
+          format: float
+        height:
+          type: number
+          format: float
+    materialsservicesProcurementTypeEnum:
+      type: string
+      enum:
+        - NA
+        - PRODUCTION
+        - PURCHASE
+      default: NA
+    materialsservicesStorageTypeEnum:
+      type: string
+      enum:
+        - NA
+        - COLD
+        - FREEZE
+        - ROOM
+      default: NA
+    materialsservicesSupplyStatusEnum:
+      type: string
+      enum:
+        - NA
+        - USED
+        - UNUSED
+        - OFF_SEASON
+        - ON_SEASON
+      default: NA
+    protobufAny:
+      type: object
+      properties:
+        "@type":
+          type: string
+      additionalProperties: {}
+    purchase_pricesGetMaterialPurchasePriceListResponse:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/purchase_pricesMaterialPurchasePrice"
+    purchase_pricesGetProductPurchasePriceListResponse:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/purchase_pricesProductPurchasePrice"
+    purchase_pricesGetPurchasePriceHistoriesResponse:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/commonPriceHistories"
+    purchase_pricesMaterialPurchasePrice:
+      type: object
+      properties:
+        id:
+          type: string
+        materialCode:
+          type: string
+        supplierCode:
+          type: string
+        purchasePrice:
+          type: integer
+          format: int32
+        register:
+          type: string
+        priceList:
+          type: array
+          items:
+            $ref: "#/components/schemas/materialspurchase_pricesPriceHistories"
+      title: |-
+        ===================================================================
+        RESOURCES
+        ===================================================================
+    purchase_pricesPatchMaterialPurchasePriceResponse:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        data:
+          $ref: "#/components/schemas/purchase_pricesMaterialPurchasePrice"
+    purchase_pricesPatchProductPurchasePriceResponse:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        data:
+          $ref: "#/components/schemas/purchase_pricesProductPurchasePrice"
+    purchase_pricesPostMaterialPurchasePriceRequest:
+      type: object
+      properties:
+        materialCode:
+          type: string
+        materialName:
+          type: string
+        supplierCode:
+          type: string
+        purchasePrice:
+          type: integer
+          format: int32
+        startAt:
+          type: string
+    purchase_pricesPostMaterialPurchasePriceResponse:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        data:
+          $ref: "#/components/schemas/purchase_pricesMaterialPurchasePrice"
+    purchase_pricesPostProductPurchasePriceRequest:
+      type: object
+      properties:
+        productCode:
+          type: string
+        productName:
+          type: string
+        supplierCode:
+          type: string
+        purchasePrice:
+          type: integer
+          format: int32
+        startAt:
+          type: string
+    purchase_pricesPostProductPurchasePriceResponse:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        data:
+          $ref: "#/components/schemas/purchase_pricesProductPurchasePrice"
+    purchase_pricesProductPurchasePrice:
+      type: object
+      properties:
+        id:
+          type: string
+        productCode:
+          type: string
+        supplierCode:
+          type: string
+        purchasePrice:
+          type: integer
+          format: int32
+        register:
+          type: string
+        priceList:
+          type: array
+          items:
+            $ref: "#/components/schemas/commonPriceHistories"
+      title: |-
+        ===================================================================
+        RESOURCES
+        ===================================================================
+    rpcStatus:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            $ref: "#/components/schemas/protobufAny"
+    sales_pricesGetProductSalesPriceListResponse:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/sales_pricesProductSalesPrice"
+    sales_pricesGetSalesPriceHistoriesResponse:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/commonPriceHistories"
+    sales_pricesPatchProductSalesPriceResponse:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        data:
+          $ref: "#/components/schemas/sales_pricesProductSalesPrice"
+    sales_pricesPostProductSalesPriceRequest:
+      type: object
+      properties:
+        productCode:
+          type: string
+        productName:
+          type: string
+        salesChannel:
+          $ref: "#/components/schemas/commonSalesChannelEnum"
+        salesPrice:
+          type: integer
+          format: int32
+        startAt:
+          type: string
+    sales_pricesPostProductSalesPriceResponse:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        data:
+          $ref: "#/components/schemas/sales_pricesProductSalesPrice"
+    sales_pricesProductSalesPrice:
+      type: object
+      properties:
+        id:
+          type: string
+        productCode:
+          type: string
+        productName:
+          type: string
+        salesChannel:
+          $ref: "#/components/schemas/commonSalesChannelEnum"
+        salesPrice:
+          type: integer
+          format: int32
+        register:
+          type: string
+        priceList:
+          type: array
+          items:
+            $ref: "#/components/schemas/commonPriceHistories"
+      title: |-
+        ===================================================================
+        RESOURCES
+        ===================================================================
+    servicesGetMaterialListResponse:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/servicesMaterials"
+    servicesGetProductListResponse:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/servicesProducts"
+    servicesGetSupplierListResponse:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/servicesSuppliers"
+    servicesMaterialTypeEnum:
+      type: string
+      enum:
+        - NA
+        - RAW
+        - SUPPLEMENTARY
+        - SUBSIDIARY
+      default: NA
+    servicesMaterials:
+      type: object
+      properties:
+        id:
+          type: string
+        materialCode:
+          type: string
+        materialName:
+          type: string
+        version:
+          type: string
+        itemCategory:
+          type: string
+        ph1:
+          type: string
+        ph2:
+          type: string
+        ph3:
+          type: string
+        materialType:
+          $ref: "#/components/schemas/servicesMaterialTypeEnum"
+        procurementType:
+          $ref: "#/components/schemas/materialsservicesProcurementTypeEnum"
+        brandType:
+          $ref: "#/components/schemas/materialsservicesBrandTypeEnum"
+        standardWeight:
+          type: integer
+          format: int32
+        baseUnit:
+          $ref: "#/components/schemas/materialsservicesBaseUnitEnum"
+        storageType:
+          $ref: "#/components/schemas/materialsservicesStorageTypeEnum"
+        shelfLifeDay:
+          type: integer
+          format: int32
+        minAllowedOutboundDay:
+          type: number
+          format: float
+        maxAllowedOutboundDay:
+          type: number
+          format: float
+        consumptionDay:
+          type: integer
+          format: int32
+        cbm:
+          $ref: "#/components/schemas/materialsservicesCBM"
+        inboundUnit:
+          $ref: "#/components/schemas/materialsservicesBaseUnitEnum"
+        unitPerBox:
+          type: integer
+          format: int32
+        unitPerPallette:
+          type: integer
+          format: int32
+        supplyStatus:
+          $ref: "#/components/schemas/materialsservicesSupplyStatusEnum"
+        useSingleBarcode:
+          type: boolean
+        barcode:
+          type: string
+        canUse:
+          type: boolean
+      title: |-
+        ===================================================================
+        RESOURCES
+        ===================================================================
+    servicesPostMaterialsRequest:
+      type: object
+      properties:
+        id:
+          type: string
+        materialCode:
+          type: string
+        materialName:
+          type: string
+        version:
+          type: string
+        itemCategory:
+          type: string
+        ph1:
+          type: string
+        ph2:
+          type: string
+        ph3:
+          type: string
+        materialType:
+          $ref: "#/components/schemas/servicesMaterialTypeEnum"
+        procurementType:
+          $ref: "#/components/schemas/materialsservicesProcurementTypeEnum"
+        brandType:
+          $ref: "#/components/schemas/materialsservicesBrandTypeEnum"
+        standardWeight:
+          type: integer
+          format: int32
+        baseUnit:
+          $ref: "#/components/schemas/materialsservicesBaseUnitEnum"
+        storageType:
+          $ref: "#/components/schemas/materialsservicesStorageTypeEnum"
+        shelfLifeDay:
+          type: integer
+          format: int32
+        minAllowedOutboundDay:
+          type: number
+          format: float
+        maxAllowedOutboundDay:
+          type: number
+          format: float
+        consumptionDay:
+          type: integer
+          format: int32
+        cbm:
+          $ref: "#/components/schemas/materialsservicesCBM"
+        inboundUnit:
+          $ref: "#/components/schemas/materialsservicesBaseUnitEnum"
+        unitPerBox:
+          type: integer
+          format: int32
+        unitPerPallette:
+          type: integer
+          format: int32
+        supplyStatus:
+          $ref: "#/components/schemas/materialsservicesSupplyStatusEnum"
+        useSingleBarcode:
+          type: boolean
+        barcode:
+          type: string
+        canUse:
+          type: boolean
+    servicesPostMaterialsResponse:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        data:
+          $ref: "#/components/schemas/servicesMaterials"
+    servicesPostProductsRequest:
+      type: object
+      properties:
+        id:
+          type: string
+        productCode:
+          type: string
+        productName:
+          type: string
+        version:
+          type: string
+        itemCategory:
+          type: string
+        ph1:
+          type: string
+        ph2:
+          type: string
+        ph3:
+          type: string
+        productType:
+          $ref: "#/components/schemas/commonProductTypeEnum"
+        procurementType:
+          $ref: "#/components/schemas/commonProcurementTypeEnum"
+        brandType:
+          $ref: "#/components/schemas/commonBrandTypeEnum"
+        standardWeight:
+          type: integer
+          format: int32
+        baseUnit:
+          $ref: "#/components/schemas/commonBaseUnitEnum"
+        storageType:
+          $ref: "#/components/schemas/commonStorageTypeEnum"
+        salesChannel:
+          $ref: "#/components/schemas/commonSalesChannelEnum"
+        useFixedWeight:
+          type: boolean
+        willTakeBack:
+          type: boolean
+        shelfLifeDay:
+          type: integer
+          format: int32
+        minAllowedOutboundDay:
+          type: number
+          format: float
+        maxAllowedOutboundDay:
+          type: number
+          format: float
+        consumptionDay:
+          type: integer
+          format: int32
+        cbm:
+          $ref: "#/components/schemas/commonCBM"
+        inboundUnit:
+          $ref: "#/components/schemas/commonBaseUnitEnum"
+        unitPerBox:
+          type: integer
+          format: int32
+        unitPerPallette:
+          type: integer
+          format: int32
+        useSingleBarcode:
+          type: boolean
+        barcode:
+          type: string
+        barcodeRule:
+          type: string
+        supplyStatus:
+          $ref: "#/components/schemas/commonSupplyStatusEnum"
+        canUse:
+          type: boolean
+    servicesPostProductsResponse:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        data:
+          $ref: "#/components/schemas/servicesProducts"
+    servicesPostSuppliersRequest:
+      type: object
+      properties:
+        id:
+          type: string
+        supplierCode:
+          type: string
+        supplierName:
+          type: string
+        manager:
+          type: string
+        businessNumber:
+          type: string
+    servicesPostSuppliersResponse:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        data:
+          $ref: "#/components/schemas/servicesSuppliers"
+    servicesProducts:
+      type: object
+      properties:
+        id:
+          type: string
+        productCode:
+          type: string
+        productName:
+          type: string
+        version:
+          type: string
+        itemCategory:
+          type: string
+        ph1:
+          type: string
+        ph2:
+          type: string
+        ph3:
+          type: string
+        productType:
+          $ref: "#/components/schemas/commonProductTypeEnum"
+        procurementType:
+          $ref: "#/components/schemas/commonProcurementTypeEnum"
+        brandType:
+          $ref: "#/components/schemas/commonBrandTypeEnum"
+        standardWeight:
+          type: integer
+          format: int32
+        baseUnit:
+          $ref: "#/components/schemas/commonBaseUnitEnum"
+        storageType:
+          $ref: "#/components/schemas/commonStorageTypeEnum"
+        salesChannel:
+          $ref: "#/components/schemas/commonSalesChannelEnum"
+        useFixedWeight:
+          type: boolean
+        willTakeBack:
+          type: boolean
+        shelfLifeDay:
+          type: integer
+          format: int32
+        minAllowedOutboundDay:
+          type: number
+          format: float
+        maxAllowedOutboundDay:
+          type: number
+          format: float
+        consumptionDay:
+          type: integer
+          format: int32
+        cbm:
+          $ref: "#/components/schemas/commonCBM"
+        inboundUnit:
+          $ref: "#/components/schemas/commonBaseUnitEnum"
+        unitPerBox:
+          type: integer
+          format: int32
+        unitPerPallette:
+          type: integer
+          format: int32
+        useSingleBarcode:
+          type: boolean
+        barcode:
+          type: string
+        barcodeRule:
+          type: string
+        supplyStatus:
+          $ref: "#/components/schemas/commonSupplyStatusEnum"
+        canUse:
+          type: boolean
+      title: |-
+        ===================================================================
+        RESOURCES
+        ===================================================================
+    servicesSuppliers:
+      type: object
+      properties:
+        id:
+          type: string
+        supplierCode:
+          type: string
+        supplierName:
+          type: string
+        manager:
+          type: string
+        businessNumber:
+          type: string
+      title: |-
+        ===================================================================
+        RESOURCES
+        ===================================================================

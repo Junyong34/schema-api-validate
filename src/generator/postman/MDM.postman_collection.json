@@ -1,0 +1,2802 @@
+{
+	"info": {
+		"_postman_id": "5d3bd288-87fe-483e-8b0b-458349c0b2c0",
+		"name": "[MDM] 기준정보",
+		"description": "원부자재, 제상품 및 기타 기능에 대한 API 안내 문서입니다.\n\n작성일자:  \n2022.11.21\n\n##### `기본 응답 포맷`\n\n``` json\n{\n    \"code\": \"SUCCESS\",\n    \"message\": \"성공.\",\n    \"data\": {\n        ...\n    }\n}\n\n```\n\n##### `📌 이넘 필드 참고`\n\n| **Field Name** | **Description** |\n| --- | --- |\n| MaterialType | NA=0 (선택하지 않은 경우)  <br>RAW=1 (원자재)  <br>SUPPLEMENTARY=2 (부재료)  <br>SUBSIDIARY=3 (부자재) |\n| ProcurementType | NA=0 (선택하지 않은 경우)  <br>PRODUCTION=1 (생산)  <br>PURCHASE=2 (매입) |\n| BrandType | NA=0 (선택하지 않은 경우)  <br>PURE=1 (퓨어)  <br>SAFE=2 (안전)  <br>SUPER_FRESH=3 (초신선)  <br>BABY=4 (베이비) |\n| SupplyStatus | NA=0 (선택하지 않은 경우)  <br>USED=1 (사용)  <br>UNUSED=2 (미사용)  <br>OFF_SEASON=3 (시즌 오프)  <br>ON_SEASON=3 (시즌 중) |\n| BaseUnit | NA=0 (선택하지 않은 경우)  <br>PALLETTE=1  <br>BOX=2  <br>EA=3  <br>KG=4  <br>L=5  <br>ROLL=6 |\n| StorageType | NA=0 (선택하지 않은 경우)  <br>COLD=1 (냉장)  <br>FREEZE=2 (냉동)  <br>ROOM=3 (상온 |",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17517386"
+	},
+	"item": [
+		{
+			"name": "원부자재 / 제상품",
+			"item": [
+				{
+					"name": "거래처 전체 조회",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// const responseJson = pm.response.json();",
+									"// console.log(responseJson);",
+									"// if(typeof responseJson.data.access_token !== 'undefined'){",
+									"//     pm.environment.set(\"access_token\", responseJson.data.access_token);",
+									"// }"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{localApiHost}}/admin/v1/suppliers",
+							"host": [
+								"{{localApiHost}}"
+							],
+							"path": [
+								"admin",
+								"v1",
+								"suppliers"
+							]
+						},
+						"description": "거래처 전체 조회 API\n\n##### `요청 모델.`\n\n| **Field Name** | **Required** | **Type** | **Validation** |\n| --- | --- | --- | --- |\n\n##### `응답 코드.`\n\n| **HttpStatusCode** | **Code** | **Message** |\n| --- | --- | --- |\n| 200 | SUCCESS | 성공. |\n| 204 | NO_CONTENT | 조회 결과가 없는 경우 |\n| 500 | FAILED_INTERNAL_ERROR | 서버에 문제가 생긴 경우 |\n\n##### `📌 응답 필드 참고`\n\n| **Field Name** | **Description** |\n| --- | --- |"
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:80/admin/v1/suppliers",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "80",
+									"path": [
+										"admin",
+										"v1",
+										"suppliers"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"SUCCESS\",\n    \"message\": \"\",\n    \"data\": [\n        {\n            \"id\": \"6377309104da17f7218f7ffc\",\n            \"supplierCode\": \"supplier#2\",\n            \"supplierName\": \"supplier#0\",\n            \"manager\": \"서준호\",\n            \"businessNumber\": \"2248700271\"\n        },\n        {\n            \"id\": \"637731ddcacaee89c5f264af\",\n            \"supplierCode\": \"supplier#1\",\n            \"supplierName\": \"supplier#0\",\n            \"manager\": \"서준호\",\n            \"businessNumber\": \"2248700271\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "204",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{localApiHost}}/admin/v1/suppliers",
+									"host": [
+										"{{localApiHost}}"
+									],
+									"path": [
+										"admin",
+										"v1",
+										"suppliers"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "404",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{localApiHost}}/admin/v1/suppliers",
+									"host": [
+										"{{localApiHost}}"
+									],
+									"path": [
+										"admin",
+										"v1",
+										"suppliers"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"NO_CONTENT\",\n    \"message\": \"\",\n    \"data\": []\n}"
+						}
+					]
+				},
+				{
+					"name": "거래처 생성",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();",
+									"console.log(responseJson);",
+									"if(typeof responseJson.data.access_token !== 'undefined'){",
+									"    pm.environment.set(\"access_token\", responseJson.data.access_token);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"supplierCode\": \"supplier#1\",\n    \"supplierName\": \"supplier#0\",\n    \"manager\": \"서준호\",\n    \"businessNumber\": \"2248700271\"\n}"
+						},
+						"url": {
+							"raw": "{{localApiHost}}/admin/v1/suppliers",
+							"host": [
+								"{{localApiHost}}"
+							],
+							"path": [
+								"admin",
+								"v1",
+								"suppliers"
+							]
+						},
+						"description": "인증 및 계정정보 획득 API\n\n##### `요청 모델.`\n\n| **Field Name** | **Required** | **Type** | **Validation** |\n| --- | --- | --- | --- |\n| supplierCode | true | string | \\- |\n| supplierName | true | string | \\- |\n| manager | true | string | \\- |\n| businessNumber | true | string | len=10 |\n\n##### `응답 코드.`\n\n| **HttpStatusCode** | **Code** | **Message** |\n| --- | --- | --- |\n| 201 | CREATED | 성공. |\n| 400 | MISSING_PARAMETERS | 필수 필드가 없는 경우 |\n| 400 | INVALID_PARAMETERS | 올바른 형식이 아닌 경우 |\n| 401 | ACCESS_DENIED | 이미 존재하는 경우 |\n| 500 | FAILED_INTERNAL_ERROR | 서버에 문제가 생긴 경우 |\n\n##### `📌 응답 필드 참고`\n\n| **Field Name** | **Description** |\n| --- | --- |"
+					},
+					"response": [
+						{
+							"name": "201",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"supplierCode\": \"supplier#2\",\n    \"supplierName\": \"supplier#0\",\n    \"manager\": \"서준호\",\n    \"businessNumber\": \"2248700271\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:80/admin/v1/suppliers",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "80",
+									"path": [
+										"admin",
+										"v1",
+										"suppliers"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"CREATED\",\n    \"message\": \"\",\n    \"data\": {\n        \"id\": \"637785b452acd013720a054e\",\n        \"supplierCode\": \"supplier#1\",\n        \"supplierName\": \"supplier#0\",\n        \"manager\": \"서준호\",\n        \"businessNumber\": \"2248700271\"\n    }\n}"
+						},
+						{
+							"name": "400",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"supplierCode\": \"supplier#1\",\n    \"supplierName\": \"supplier#0\",\n    \"businessNumber\": \"2248700271\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localApiHost}}/admin/v1/suppliers",
+									"host": [
+										"{{localApiHost}}"
+									],
+									"path": [
+										"admin",
+										"v1",
+										"suppliers"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"MISSING_PARAMETERS\",\n    \"message\": \"rpc error: code = InvalidArgument desc = MISSING_PARAMETERS, Manager\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "원부자재 전체 조회",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();",
+									"console.log(responseJson);",
+									"if(typeof responseJson.data.access_token !== 'undefined'){",
+									"    pm.environment.set(\"access_token\", responseJson.data.access_token);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{localApiHost}}/admin/v1/materials",
+							"host": [
+								"{{localApiHost}}"
+							],
+							"path": [
+								"admin",
+								"v1",
+								"materials"
+							]
+						},
+						"description": "원부자재 전체 조회 API\n\n##### `요청 모델.`\n\n| **Field Name** | **Required** | **Type** | **Validation** |\n| --- | --- | --- | --- |\n\n##### `응답 코드.`\n\n| **HttpStatusCode** | **Code** | **Message** |\n| --- | --- | --- |\n| 200 | SUCCESS | 성공. |\n| 204 | NO_CONTENT | 조회 결과가 없는 경우 |\n| 500 | FAILED_INTERNAL_ERROR | 서버에 문제가 생긴 경우 |\n\n##### `📌 응답 필드 참고`\n\n| **Field Name** | **Description** |\n| --- | --- |"
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:80/admin/v1/materials",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "80",
+									"path": [
+										"admin",
+										"v1",
+										"materials"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"SUCCESS\",\n    \"message\": \"\",\n    \"data\": [\n        {\n            \"id\": null,\n            \"materialCode\": \"1001C\",\n            \"materialName\": \"무)동물복지_유정란\",\n            \"version\": \"1\",\n            \"itemCategory\": \"축산\",\n            \"ph1\": \"축산기타\",\n            \"ph2\": \"축산무항\",\n            \"ph3\": \"달걀\",\n            \"materialType\": 1,\n            \"procurementType\": 1,\n            \"brandType\": 3,\n            \"standardWeight\": 600,\n            \"baseUnit\": 1,\n            \"storageType\": 1,\n            \"shelfLifeDay\": 10,\n            \"minAllowedOutboundDay\": 4.5,\n            \"maxAllowedOutboundDay\": 4.5,\n            \"consumptionDay\": 5,\n            \"cbm\": {\n                \"width\": 0.15,\n                \"depth\": 0.01,\n                \"height\": 0.08\n            },\n            \"inboundUnit\": 1,\n            \"unitPerBox\": 0,\n            \"unitPerPallette\": 0,\n            \"supplyStatus\": 1,\n            \"useSingleBarcode\": true,\n            \"barcode\": \"barcode\",\n            \"canUse\": true\n        }\n    ]\n}"
+						},
+						{
+							"name": "204",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{localApiHost}}/admin/v1/materials",
+									"host": [
+										"{{localApiHost}}"
+									],
+									"path": [
+										"admin",
+										"v1",
+										"materials"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"NO_CONTENT\",\n    \"message\": \"\",\n    \"data\": []\n}"
+						}
+					]
+				},
+				{
+					"name": "원부자재 생성",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();",
+									"console.log(responseJson);",
+									"if(typeof responseJson.data.access_token !== 'undefined'){",
+									"    pm.environment.set(\"access_token\", responseJson.data.access_token);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"materialCode\": \"1001C\",\n    \"materialName\": \"무)동물복지_유정란\",\n    \"version\": \"1\",\n    \"itemCategory\": \"축산\",\n    \"ph1\": \"축산기타\",\n    \"ph2\": \"축산무항\",\n    \"ph3\": \"달걀\",\n    \"materialType\":\"RAW\",\n    \"procurementType\":\"PRODUCTION\",\n    \"brandType\": \"SUPER_FRESH\",\n    \"standardWeight\": 600,\n    \"baseUnit\": \"PALLETTE\",\n    \"storageType\": \"COLD\",\n    \"shelfLifeDay\": 10,\n    \"minAllowedOutboundDay\": 4.5,\n    \"maxAllowedOutboundDay\": 4.5,\n    \"consumptionDay\": 5,\n    \"cbm\": {\n        \"width\": 0.15,\n        \"depth\": 0.01,\n        \"height\": 0.08\n    },\n    \"inboundUnit\": \"BOX\",\n    \"unitPerBox\": 0,\n    \"unitPerPallette\": 0,\n    \"supplyStatus\": \"USED\",\n    \"useSingleBarcode\": true,\n    \"barcode\": \"barcode\",\n    \"canUse\": true\n}"
+						},
+						"url": {
+							"raw": "{{localApiHost}}/admin/v1/materials",
+							"host": [
+								"{{localApiHost}}"
+							],
+							"path": [
+								"admin",
+								"v1",
+								"materials"
+							]
+						},
+						"description": "원부자재 생성 API\n\n##### `요청 모델.`\n\n| **Field Name** | **Required** | **Type** | **Validation** |\n| --- | --- | --- | --- |\n| materialCode | true | string | \\- |\n| materialName | true | string | \\- |\n| version | true | string |  |\n| itemCategory | true | string | \\- |\n| ph1 | true | string | \\- |\n| ph2 | true | string | \\- |\n| ph3 | true | string | \\- |\n| materialType | true | enum | \\- |\n| procurementType | true | enum | \\- |\n| brandType | true | enum | \\- |\n| standardWeight | true | int32 | gt -1 |\n| baseUnit | true | enum | \\- |\n| storageType | true | enum | \\- |\n| shelfLifeDay | true | int32 | gt -1 |\n| minAllowedOutboundDay | true | float | gt -1 |\n| maxAllowedOutboundDay | true | float | gt -1 |\n| consumptionDay | false | int32 | gt -1 |\n| cbm | true | CBM | \\- |\n| inboundUnit | truue | enum | \\- |\n| supplyStatus | true | enum | \\- |\n| leadTimeDay | true | int32 | \\- |\n| unitPerBox | true | int32 | gt -1 |\n| unitPerPallette | true | int32 | gt -1 |\n| supplyStatus | true | enum | \\- |\n| useSingleBarcode | true | bool | \\- |\n| barcode | false | string | \\- |\n| canUse | true | bool | \\- |\n\n##### `응답 코드.`\n\n| **HttpStatusCode** | **Code** | **Message** |\n| --- | --- | --- |\n| 201 | CREATED | 성공. |\n| 400 | MISSING_PARAMETERS | 필수 필드가 없는 경우 |\n| 400 | INVALID_PARAMETERS | 올바른 형식이 아닌 경우 |\n| 400 | DUPLICATED_KEY | 중복된 데이터가 있는 경우 |\n| 500 | FAILED_INTERNAL_ERROR | 서버에 문제가 생긴 경우 |"
+					},
+					"response": [
+						{
+							"name": "201",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"materialCode\": \"1001C\",\n    \"materialName\": \"무)동물복지_유정란\",\n    \"version\": \"1\",\n    \"itemCategory\": \"축산\",\n    \"ph1\": \"축산기타\",\n    \"ph2\": \"축산무항\",\n    \"ph3\": \"달걀\",\n    \"materialType\":\"RAW\",\n    \"procurementType\":\"PRODUCTION\",\n    \"brandType\": \"SUPER_FRESH\",\n    \"standardWeight\": \"600\",\n    \"baseUnit\": \"PALLETTE\",\n    \"storageType\": \"COLD\",\n    \"shelfLifeDay\": 10,\n    \"minAllowedOutboundDay\": 4.5,\n    \"maxAllowedOutboundDay\": 4.5,\n    \"consumptionDay\": 5,\n    \"cbm\": {\n        \"width\": 0.15,\n        \"depth\": 0.01,\n        \"height\": 0.08\n    },\n    \"inboundUnit\": \"BOX\",\n    \"unitPerBox\": 0,\n    \"unitPerPallette\": 0,\n    \"supplyStatus\": \"USED\",\n    \"useSingleBarcode\": true,\n    \"barcode\": \"barcode\",\n    \"canUse\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:80/admin/v1/materials",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "80",
+									"path": [
+										"admin",
+										"v1",
+										"materials"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"CREATED\",\n    \"message\": \"\",\n    \"data\": {\n        \"id\": null,\n        \"materialCode\": \"1001C\",\n        \"materialName\": \"무)동물복지_유정란\",\n        \"version\": \"1\",\n        \"itemCategory\": \"축산\",\n        \"ph1\": \"축산기타\",\n        \"ph2\": \"축산무항\",\n        \"ph3\": \"달걀\",\n        \"materialType\": 1,\n        \"procurementType\": 1,\n        \"brandType\": 3,\n        \"standardWeight\": 600,\n        \"baseUnit\": 1,\n        \"storageType\": 1,\n        \"shelfLifeDay\": 10,\n        \"minAllowedOutboundDay\": 4.5,\n        \"maxAllowedOutboundDay\": 4.5,\n        \"consumptionDay\": 5,\n        \"cbm\": {\n            \"width\": 0.15,\n            \"depth\": 0.01,\n            \"height\": 0.08\n        },\n        \"inboundUnit\": 1,\n        \"unitPerBox\": 0,\n        \"unitPerPallette\": 0,\n        \"supplyStatus\": 1,\n        \"useSingleBarcode\": true,\n        \"barcode\": \"barcode\",\n        \"canUse\": true\n    }\n}"
+						},
+						{
+							"name": "400",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"materialCode\": \"1001C\",\n    \"materialName\": \"무)동물복지_유정란\",\n    \"version\": \"1\",\n    \"itemCategory\": \"축산\",\n    \"ph1\": \"축산기타\",\n    \"ph3\": \"달걀\",\n    \"materialType\":\"RAW\",\n    \"procurementType\":\"PRODUCTION\",\n    \"brandType\": \"SUPER_FRESH\",\n    \"standardWeight\": \"600\",\n    \"baseUnit\": \"PALLETTE\",\n    \"storageType\": \"COLD\",\n    \"shelfLifeDay\": 10,\n    \"minAllowedOutboundDay\": 4.5,\n    \"maxAllowedOutboundDay\": 4.5,\n    \"consumptionDay\": 5,\n    \"cbm\": {\n        \"width\": 0.15,\n        \"depth\": 0.01,\n        \"height\": 0.08\n    },\n    \"inboundUnit\": \"BOX\",\n    \"unitPerBox\": 0,\n    \"unitPerPallette\": 0,\n    \"supplyStatus\": \"USED\",\n    \"useSingleBarcode\": true,\n    \"barcode\": \"barcode\",\n    \"canUse\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localApiHost}}/admin/v1/materials",
+									"host": [
+										"{{localApiHost}}"
+									],
+									"path": [
+										"admin",
+										"v1",
+										"materials"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"MISSING_PARAMETERS\",\n    \"message\": \"rpc error: code = InvalidArgument desc = MISSING_PARAMETERS, Ph2\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "400",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"materialCode\": \"1001C\",\n    \"materialName\": \"무)동물복지_유정란\",\n    \"version\": \"1\",\n    \"itemCategory\": \"축산\",\n    \"ph1\": \"축산기타\",\n    \"ph2\": \"축산무항\",\n    \"ph3\": \"달걀\",\n    \"materialType\":\"RAW\",\n    \"procurementType\":\"PRODUCTION\",\n    \"brandType\": \"SUPER_FRESH\",\n    \"standardWeight\": -1,\n    \"baseUnit\": \"PALLETTE\",\n    \"storageType\": \"COLD\",\n    \"shelfLifeDay\": 10,\n    \"minAllowedOutboundDay\": 4.5,\n    \"maxAllowedOutboundDay\": 4.5,\n    \"consumptionDay\": 5,\n    \"cbm\": {\n        \"width\": 0.15,\n        \"depth\": 0.01,\n        \"height\": 0.08\n    },\n    \"inboundUnit\": \"BOX\",\n    \"unitPerBox\": 0,\n    \"unitPerPallette\": 0,\n    \"supplyStatus\": \"USED\",\n    \"useSingleBarcode\": true,\n    \"barcode\": \"barcode\",\n    \"canUse\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localApiHost}}/admin/v1/materials",
+									"host": [
+										"{{localApiHost}}"
+									],
+									"path": [
+										"admin",
+										"v1",
+										"materials"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"INVALID_PARAMETERS\",\n    \"message\": \"rpc error: code = InvalidArgument desc = INVALID_PARAMETERS, invalid PostMaterials_Request.StandardWeight: value must be greater than -1\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "원부자재 구매 가격 전체 조회",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// const responseJson = pm.response.json();",
+									"// console.log(responseJson);",
+									"// if(typeof responseJson.data.access_token !== 'undefined'){",
+									"//     pm.environment.set(\"access_token\", responseJson.data.access_token);",
+									"// }"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{localApiHost}}/admin/v1/materials/purchase-prices",
+							"host": [
+								"{{localApiHost}}"
+							],
+							"path": [
+								"admin",
+								"v1",
+								"materials",
+								"purchase-prices"
+							]
+						},
+						"description": "원부자재 구매 가격 전체 조회 API\n\n##### `응답 코드.`\n\n| **HttpStatusCode** | **Code** | **Message** |\n| --- | --- | --- |\n| 200 | SUCCESS | 성공. |\n| 204 | NO_CONTENT | 조회된 결과가 없는 경우 |\n| 500 | FAILED_INTERNAL_ERROR | 서버에 문제가 생긴 경우 |\n\n##### `📌 응답 필드 참고`\n\n| **Field Name** | **Description** |\n| --- | --- |"
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:80/admin/v1/materials/purchase-prices",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "80",
+									"path": [
+										"admin",
+										"v1",
+										"materials",
+										"purchase-prices"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"SUCCESS\",\n    \"message\": \"\",\n    \"data\": [\n        {\n            \"price\": 2200,\n            \"startAt\": \"2022-11-18T13:47:38Z\",\n            \"endAt\": \"0001-01-01T00:00:00Z\",\n            \"register\": \"서준호\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "204",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{localApiHost}}/admin/v1/materials/purchase-prices",
+									"host": [
+										"{{localApiHost}}"
+									],
+									"path": [
+										"admin",
+										"v1",
+										"materials",
+										"purchase-prices"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "원부자재 구매 가격 등록",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();",
+									"console.log(responseJson);",
+									"if(typeof responseJson.data.access_token !== 'undefined'){",
+									"    pm.environment.set(\"access_token\", responseJson.data.access_token);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"materialCode\": \"1001C\",\n    \"materialName\": \"무)동물복지_유정란\",\n    \"supplierCode\": \"supplier001\",\n    \"purchasePrice\": 2200,\n    \"startAt\": \"2022-11-14T00:00:00Z\"\n}"
+						},
+						"url": {
+							"raw": "{{localApiHost}}/admin/v1/materials/purchase-prices",
+							"host": [
+								"{{localApiHost}}"
+							],
+							"path": [
+								"admin",
+								"v1",
+								"materials",
+								"purchase-prices"
+							]
+						},
+						"description": "원부자재 구매 가격 등록 API\n\n##### `요청 모델.`\n\n| **Field Name** | **Required** | **Type** | **Validation** |\n| --- | --- | --- | --- |\n| materialCode | true | string | \\- |\n| materialName | true | string | \\- |\n| supplierCode | true | string | \\- |\n| purchasePrice | true | int32 | gt -1 |\n| startAt | true | string | \\- |\n\n##### `응답 코드.`\n\n| **HttpStatusCode** | **Code** | **Message** |\n| --- | --- | --- |\n| 201 | CREATED | 성공. |\n| 400 | MISSING_PARAMETERS | 필수 필드가 없는 경우 |\n| 400 | INVALID_PARAMETERS | 올바른 형식이 아닌 경우 |\n| 404 | NOT_FOUND_ERROR | 생성 요청한 material code 가 존재하지 않는 경우 |\n| 500 | FAILED_INTERNAL_ERROR | 서버에 문제가 생긴 경우 |"
+					},
+					"response": [
+						{
+							"name": "201",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"materialCode\": \"1001C\",\n    \"materialName\": \"무)동물복지_유정란\",\n    \"supplierCode\": \"supplier001\",\n    \"purchasePrice\": 2200,\n    \"startAt\": \"2022-11-14T00:00:00Z\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:80/admin/v1/materials/purchase-prices",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "80",
+									"path": [
+										"admin",
+										"v1",
+										"materials",
+										"purchase-prices"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"CREATED\",\n    \"message\": \"\",\n    \"data\": {\n        \"id\": \"63778429df7b987913bf18a7\",\n        \"materialCode\": \"1001C\",\n        \"supplierCode\": \"supplier001\",\n        \"purchasePrice\": 2200,\n        \"register\": \"\",\n        \"priceList\": null\n    }\n}"
+						},
+						{
+							"name": "400",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"materialCode\": \"1001C\",\n    \"materialName\": \"무)동물복지_유정란\",\n    \"supplierCode\": \"supplier001\",\n    \"startAt\": \"2022-11-14T00:00:00Z\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localApiHost}}/admin/v1/materials/purchase-prices",
+									"host": [
+										"{{localApiHost}}"
+									],
+									"path": [
+										"admin",
+										"v1",
+										"materials",
+										"purchase-prices"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"MISSING_PARAMETERS\",\n    \"message\": \"rpc error: code = InvalidArgument desc = MISSING_PARAMETERS, PurchasePrice\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "400",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"materialCode\": \"1001C\",\n    \"materialName\": \"무)동물복지_유정란\",\n    \"supplierCode\": \"supplier001\",\n    \"purchasePrice\": -1,\n    \"startAt\": \"2022-11-14T00:00:00Z\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localApiHost}}/admin/v1/materials/purchase-prices",
+									"host": [
+										"{{localApiHost}}"
+									],
+									"path": [
+										"admin",
+										"v1",
+										"materials",
+										"purchase-prices"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"INVALID_PARAMETERS\",\n    \"message\": \"rpc error: code = InvalidArgument desc = INVALID_PARAMETERS, invalid PostMaterialPurchasePrice_Request.PurchasePrice: value must be greater than -1\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "원부자재 구매 가격 수정",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();",
+									"console.log(responseJson);",
+									"if(typeof responseJson.data.access_token !== 'undefined'){",
+									"    pm.environment.set(\"access_token\", responseJson.data.access_token);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"purchasePrice\": 2600,\n    \"startAt\": \"2022-11-10T00:00:00Z\"\n}"
+						},
+						"url": {
+							"raw": "{{localApiHost}}/admin/v1/materials/purchase-prices/637787dfb76442f9db7650d7",
+							"host": [
+								"{{localApiHost}}"
+							],
+							"path": [
+								"admin",
+								"v1",
+								"materials",
+								"purchase-prices",
+								"637787dfb76442f9db7650d7"
+							]
+						},
+						"description": "원부자재 구매 가격 수정 API\n\n##### `요청 모델.`\n\n| **Field Name** | **Required** | **Type** | **Validation** |\n| --- | --- | --- | --- |\n| purchasePrice | true | int32 | gt -1 |\n| startAt | true | string | \\- |\n\n##### `응답 코드.`\n\n| **HttpStatusCode** | **Code** | **Message** |\n| --- | --- | --- |\n| 200 | SUCCESS | 성공. |\n| 400 | MISSING_PARAMETERS | 필수 필드가 없는 경우 |\n| 400 | INVALID_PARAMETERS | 올바른 형식이 아닌 경우 |\n| 500 | FAILED_INTERNAL_ERROR | 서버에 문제가 생긴 경우 |\n\n##### `📌 응답 필드 참고`\n\n| **Field Name** | **Description** |\n| --- | --- |"
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"purchasePrice\": 2600,\n    \"startAt\": \"2022-11-10T00:00:00Z\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:80/admin/v1/materials/purchase-prices/:documentID",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "80",
+									"path": [
+										"admin",
+										"v1",
+										"materials",
+										"purchase-prices",
+										":documentID"
+									],
+									"variable": [
+										{
+											"key": "documentID",
+											"value": null
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"SUCCESS\",\n    \"message\": \"\",\n    \"data\": {\n        \"id\": \"63778429df7b987913bf18a7\",\n        \"materialCode\": \"1001C\",\n        \"supplierCode\": \"supplier001\",\n        \"purchasePrice\": 2600,\n        \"register\": \"\",\n        \"priceList\": [\n            {\n                \"price\": 2200,\n                \"startAt\": \"2022-11-18T13:23:09Z\",\n                \"endAt\": \"0001-01-01T00:00:00Z\",\n                \"register\": \"서준호\"\n            }\n        ]\n    }\n}"
+						},
+						{
+							"name": "400",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"purchasePrice\": 2600\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localApiHost}}/admin/v1/materials/purchase-prices/:documentID",
+									"host": [
+										"{{localApiHost}}"
+									],
+									"path": [
+										"admin",
+										"v1",
+										"materials",
+										"purchase-prices",
+										":documentID"
+									],
+									"variable": [
+										{
+											"key": "documentID",
+											"value": null
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"MISSING_PARAMETERS\",\n    \"message\": \"rpc error: code = InvalidArgument desc = MISSING_PARAMETERS, StartAt\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "400",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"purchasePrice\": -1,\n    \"startAt\": \"2022-11-10T00:00:00Z\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localApiHost}}/admin/v1/materials/purchase-prices/:documentID",
+									"host": [
+										"{{localApiHost}}"
+									],
+									"path": [
+										"admin",
+										"v1",
+										"materials",
+										"purchase-prices",
+										":documentID"
+									],
+									"variable": [
+										{
+											"key": "documentID",
+											"value": null
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"INVALID_PARAMETERS\",\n    \"message\": \"rpc error: code = InvalidArgument desc = INVALID_PARAMETERS, invalid PatchMaterialPurchasePrice_Request.PurchasePrice: value must be greater than -1\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "원부자재 구매 가격 변경 이력 조회",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// const responseJson = pm.response.json();",
+									"// console.log(responseJson);",
+									"// if(typeof responseJson.data.access_token !== 'undefined'){",
+									"//     pm.environment.set(\"access_token\", responseJson.data.access_token);",
+									"// }"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{localApiHost}}/admin/v1/materials/purchase-prices/histories?materialCode=1001C&supplierCode=supplier001",
+							"host": [
+								"{{localApiHost}}"
+							],
+							"path": [
+								"admin",
+								"v1",
+								"materials",
+								"purchase-prices",
+								"histories"
+							],
+							"query": [
+								{
+									"key": "materialCode",
+									"value": "1001C"
+								},
+								{
+									"key": "supplierCode",
+									"value": "supplier001"
+								}
+							]
+						},
+						"description": "인증 및 계정정보 획득 API\n\n##### `쿼리 파라미터.`\n\n| **Field Name** | **Required** | **Type** | **Validation** |\n| --- | --- | --- | --- |\n| materialCode | true | string | \\- |\n| supplierCode | true | string | \\- |\n\n##### `응답 코드.`\n\n| **HttpStatusCode** | **Code** | **Message** |\n| --- | --- | --- |\n| 200 | SUCCESS | 성공. |\n| 204 | NO_CONTENT | 조회된 결과가 없는 경우 |\n| 400 | MISSING_PARAMETERS | 필수 필드가 없는 경우 |\n| 404 | NOT_FOUND_ERROR | 조회 요청한 material & supplier code 가 존재하지 않는 경우 |\n| 500 | FAILED_INTERNAL_ERROR | 서버에 문제가 생긴 경우 |\n\n##### `📌 응답 필드 참고`\n\n| **Field Name** | **Description** |\n| --- | --- |"
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:80/admin/v1/materials/purchase-prices/histories?materialCode=1001B&supplierCode=supplier001",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "80",
+									"path": [
+										"admin",
+										"v1",
+										"materials",
+										"purchase-prices",
+										"histories"
+									],
+									"query": [
+										{
+											"key": "materialCode",
+											"value": "1001B"
+										},
+										{
+											"key": "supplierCode",
+											"value": "supplier001"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"SUCCESS\",\n    \"message\": \"\",\n    \"data\": [\n        {\n            \"price\": 2200,\n            \"startAt\": \"2022-11-18T13:47:38Z\",\n            \"endAt\": \"0001-01-01T00:00:00Z\",\n            \"register\": \"서준호\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "204",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{localApiHost}}/admin/v1/materials/purchase-prices/histories?materialCode=1001B&supplierCode=supplier001",
+									"host": [
+										"{{localApiHost}}"
+									],
+									"path": [
+										"admin",
+										"v1",
+										"materials",
+										"purchase-prices",
+										"histories"
+									],
+									"query": [
+										{
+											"key": "materialCode",
+											"value": "1001B"
+										},
+										{
+											"key": "supplierCode",
+											"value": "supplier001"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"SUCCESS\",\n    \"message\": \"\",\n    \"data\": [\n        {\n            \"price\": 0,\n            \"startAt\": \"2022-11-16T05:05:00Z\",\n            \"endAt\": \"0001-01-01T00:00:00Z\",\n            \"register\": \"서준호\"\n        },\n        {\n            \"price\": 2250,\n            \"startAt\": \"2022-11-16T05:12:08Z\",\n            \"endAt\": \"0001-01-01T00:00:00Z\",\n            \"register\": \"서준호\"\n        },\n        {\n            \"price\": 2450,\n            \"startAt\": \"2022-11-16T05:12:55Z\",\n            \"endAt\": \"0001-01-01T00:00:00Z\",\n            \"register\": \"서준호\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "400",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{localApiHost}}/admin/v1/materials/purchase-prices/histories?materialCode=1001C&supplierCode=supplier001",
+									"host": [
+										"{{localApiHost}}"
+									],
+									"path": [
+										"admin",
+										"v1",
+										"materials",
+										"purchase-prices",
+										"histories"
+									],
+									"query": [
+										{
+											"key": "materialCode",
+											"value": "1001C"
+										},
+										{
+											"key": "supplierCode",
+											"value": "supplier001"
+										}
+									]
+								}
+							},
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"BAD_REQUEST\",\n    \"message\": \"잘못된 요청입니다.▸ \",\n    \"data\": null\n}"
+						},
+						{
+							"name": "404 (조회 요청한 material & supplier code 가 존재하지 않는 경우)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{localApiHost}}/admin/v1/materials/purchase-prices/histories?materialCode=1001B&supplierCode=supplier001",
+									"host": [
+										"{{localApiHost}}"
+									],
+									"path": [
+										"admin",
+										"v1",
+										"materials",
+										"purchase-prices",
+										"histories"
+									],
+									"query": [
+										{
+											"key": "materialCode",
+											"value": "1001B"
+										},
+										{
+											"key": "supplierCode",
+											"value": "supplier001"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"NOT_FOUND_ERROR\",\n    \"message\": \"rpc error: code = NotFound desc = rpc error: code = NotFound desc = NOT_FOUND_ERROR, materials_puchase_prices not found. | {query info:  filter: map[material_code:1001B supplier_code:supplier001]}\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "제상품 전체 조회",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localApiHost}}/admin/v1/products",
+							"host": [
+								"{{localApiHost}}"
+							],
+							"path": [
+								"admin",
+								"v1",
+								"products"
+							]
+						},
+						"description": "제상품 전체 조회 API\n\n##### `요청 모델.`\n\n| **Field Name** | **Required** | **Type** | **Validation** |\n| --- | --- | --- | --- |\n\n##### `응답 코드.`\n\n| **HttpStatusCode** | **Code** | **Message** |\n| --- | --- | --- |\n| 200 | SUCCESS | 성공. |\n| 204 | NO_CONTENT | 조회된 결과가 없는 경우 |\n| 500 | FAILED_INTERNAL_ERROR | 인증 서버에 문제가 생긴 경우 |\n\n##### `📌 응답 필드 참고`\n\n| **Field Name** | **Description** |\n| --- | --- |"
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:80/admin/v1/products",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "80",
+									"path": [
+										"admin",
+										"v1",
+										"products"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"SUCCESS\",\n    \"message\": \"\",\n    \"data\": [\n        {\n            \"productCode\": \"1001B\",\n            \"productName\": \"무)동물복지_유정란\",\n            \"itemCategory\": \"축산\",\n            \"ph1\": \"축산기타\",\n            \"ph2\": \"축산무항\",\n            \"ph3\": \"달걀\",\n            \"productType\": \"PRODUCTS\",\n            \"procurementType\": \"PRODUCTION\",\n            \"brandType\": \"SUPER_FRESH\",\n            \"shelfLifeDay\": 10,\n            \"minAllowedOutboundDay\": 4.5,\n            \"maxAllowedOutboundDay\": 4.5,\n            \"consumptionDay\": 5,\n            \"supplyStatus\": \"USED\",\n            \"leadTimeDay\": 0,\n            \"orderUnit\": \"BOX\",\n            \"baseUnit\": \"BOX\",\n            \"inboundUnit\": \"BOX\",\n            \"unitPerBox\": 0,\n            \"unitPerPallette\": 0,\n            \"orderUnitQty\": 0,\n            \"minOrderQty\": 0,\n            \"maxOrderQty\": 0,\n            \"inboundableDays\": [\n                \"SUN\",\n                \"MON\"\n            ],\n            \"useAutoOrder\": true,\n            \"useSingleBarcode\": true,\n            \"barcode\": \"barcode\",\n            \"canUse\": true,\n            \"version\": \"1\",\n            \"standardUnit\": \"600\",\n            \"storageType\": \"COLD\",\n            \"salesChannel\": \"\",\n            \"useFixedWeight\": false\n        }\n    ]\n}"
+						},
+						{
+							"name": "204",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{localApiHost}}/admin/v1/products",
+									"host": [
+										"{{localApiHost}}"
+									],
+									"path": [
+										"admin",
+										"v1",
+										"products"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "제상품 생성",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productCode\": \"5001B\",\n    \"productName\": \"무)동물복지_유정란\",\n    \"version\": \"1\",\n    \"itemCategory\": \"축산\",\n    \"ph1\": \"축산기타\",\n    \"ph2\": \"축산무항\",\n    \"ph3\": \"달걀\",\n    \"productType\":\"PRODUCTS\",\n    \"procurementType\":\"PRODUCTION\",\n    \"brandType\": \"SUPER_FRESH\",\n    \"standardWeight\": \"600\",\n    \"baseUnit\": \"PALLETTE\",\n    \"storageType\": \"COLD\",\n    \"salesChannel\": \"ON_OFFLINE\",\n    \"useFixedWeight\": true,\n    \"willTakeBack\": true,\n    \"shelfLifeDay\": 10,\n    \"minAllowedOutboundDay\": 4.5,\n    \"maxAllowedOutboundDay\": 4.5,\n    \"consumptionDay\": 5,\n    \"cbm\": {\n        \"width\": 0.15,\n        \"depth\": 0.01,\n        \"height\": 0.08\n    },\n    \"inboundUnit\": \"BOX\",\n    \"unitPerBox\": 0,\n    \"unitPerPallette\": 0,\n    \"useSingleBarcode\": true,\n    \"barcode\": \"barcode\",\n    \"supplyStatus\": \"USED\",\n    \"canUse\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localApiHost}}/admin/v1/products",
+							"host": [
+								"{{localApiHost}}"
+							],
+							"path": [
+								"admin",
+								"v1",
+								"products"
+							]
+						},
+						"description": "제상품 생성 API\n\n##### `요청 모델.`\n\n| **Field Name** | **Required** | **Type** | **Validation** |\n| --- | --- | --- | --- |\n| productCode | true | string | \\- |\n| productName | true | string | \\- |\n| version | true | string |  |\n| itemCategory | true | string | \\- |\n| ph1 | true | string | \\- |\n| ph2 | true | string | \\- |\n| ph3 | true | string | \\- |\n| productType | true | enum | \\- |\n| procurementType | true | enum | \\- |\n| brandType | true | enum | \\- |\n| standardWeight | true | int32 | gt -1 |\n| baseUnit | true | enum | \\- |\n| storageType | true | enum | \\- |\n| salesChannel | true | enum | \\- |\n| useFixedWeight | true | bool | \\- |\n| shelfLifeDay | true | int32 | gt -1 |\n| minAllowedOutboundDay | true | float | gt -1 |\n| maxAllowedOutboundDay | true | float | gt -1 |\n| consumptionDay | false | int32 | gt -1 |\n| cbm | true | CBM | \\- |\n| inboundUnit | truue | enum | \\- |\n| supplyStatus | true | enum | \\- |\n| leadTimeDay | true | int32 | \\- |\n| unitPerBox | true | int32 | gt -1 |\n| unitPerPallette | true | int32 | gt -1 |\n| supplyStatus | true | enum | \\- |\n| useSingleBarcode | true | bool | \\- |\n| barcode | false | string | \\- |\n| canUse | true | bool | \\- |\n\n##### `응답 코드.`\n\n| **HttpStatusCode** | **Code** | **Message** |\n| --- | --- | --- |\n| 201 | CREATED | 성공. |\n| 400 | MISSING_PARAMETERS | 필수 필드가 없는 경우 |\n| 400 | INVALID_PARAMETERS | 올바른 형식이 아닌 경우 |\n| 400 | DUPLICATED_KEY | 중복된 데이터가 있는 경우 |\n| 500 | FAILED_INTERNAL_ERROR | 서버에 문제가 생긴 경우 |"
+					},
+					"response": [
+						{
+							"name": "201",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"productCode\": \"1001C\",\n    \"productName\": \"무)동물복지_유정란\",\n    \"version\": \"1\",\n    \"itemCategory\": \"축산\",\n    \"ph1\": \"축산기타\",\n    \"ph2\": \"축산무항\",\n    \"ph3\": \"달걀\",\n    \"materialType\":\"RAW\",\n    \"procurementType\":\"PRODUCTION\",\n    \"brandType\": \"SUPER_FRESH\",\n    \"standardWeight\": \"600\",\n    \"baseUnit\": \"PALLETTE\",\n    \"storageType\": \"COLD\",\n    \"salesChannel\": \"ON_OFFLINE\",\n    \"shelfLifeDay\": 10,\n    \"minAllowedOutboundDay\": 4.5,\n    \"maxAllowedOutboundDay\": 4.5,\n    \"consumptionDay\": 5,\n    \"cbm\": {\n        \"width\": 0.15,\n        \"depth\": 0.01,\n        \"height\": 0.08\n    },\n    \"inboundUnit\": \"BOX\",\n    \"unitPerBox\": 0,\n    \"unitPerPallette\": 0,\n    \"useSingleBarcode\": true,\n    \"barcode\": \"barcode\",\n    \"supplyStatus\": \"USED\",\n    \"canUse\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:80/admin/v1/products",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "80",
+									"path": [
+										"admin",
+										"v1",
+										"products"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"CREATED\",\n    \"message\": \"\",\n    \"data\": {\n        \"id\": null,\n        \"productCode\": \"1001C\",\n        \"productName\": \"무)동물복지_유정란\",\n        \"version\": \"1\",\n        \"itemCategory\": \"축산\",\n        \"ph1\": \"축산기타\",\n        \"ph2\": \"축산무항\",\n        \"ph3\": \"달걀\",\n        \"productType\": 0,\n        \"procurementType\": 1,\n        \"brandType\": 3,\n        \"standardWeight\": 600,\n        \"baseUnit\": 1,\n        \"storageType\": 1,\n        \"salesChannel\": 1,\n        \"useFixedWeight\": false,\n        \"willTakeBack\": false,\n        \"shelfLifeDay\": 10,\n        \"minAllowedOutboundDay\": 4.5,\n        \"maxAllowedOutboundDay\": 4.5,\n        \"consumptionDay\": 5,\n        \"cbm\": {\n            \"width\": 0.15,\n            \"depth\": 0.01,\n            \"height\": 0.08\n        },\n        \"inboundUnit\": 1,\n        \"unitPerBox\": 0,\n        \"unitPerPallette\": 0,\n        \"useSingleBarcode\": true,\n        \"barcode\": \"barcode\",\n        \"barcodeRule\": \"\",\n        \"supplyStatus\": 1,\n        \"canUse\": true\n    }\n}"
+						},
+						{
+							"name": "400",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"productCode\": \"1001C\",\n    \"productName\": \"무)동물복지_유정란\",\n    \"version\": \"1\",\n    \"itemCategory\": \"축산\",\n    \"ph1\": \"축산기타\",\n    \"ph2\": \"축산무항\",\n    \"ph3\": \"달걀\",\n    \"materialType\":\"RAW\",\n    \"procurementType\":\"PRODUCTION\",\n    \"brandType\": \"SUPER_FRESH\",\n    \"standardWeight\": \"600\",\n    \"baseUnit\": \"PALLETTE\",\n    \"storageType\": \"COLD\",\n    \"salesChannel\": \"ON_OFFLINE\",\n    \"shelfLifeDay\": 10,\n    \"minAllowedOutboundDay\": 4.5,\n    \"maxAllowedOutboundDay\": 4.5,\n    \"consumptionDay\": 5,\n    \"cbm\": {\n        \"width\": 0.15,\n        \"depth\": 0.01,\n        \"height\": 0.08\n    },\n    \"inboundUnit\": \"BOX\",\n    \"unitPerBox\": 0,\n    \"unitPerPallette\": 0,\n    \"useSingleBarcode\": true,\n    \"barcode\": \"barcode\",\n    \"supplyStatus\": \"USED\",\n    \"canUse\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localApiHost}}/admin/v1/products",
+									"host": [
+										"{{localApiHost}}"
+									],
+									"path": [
+										"admin",
+										"v1",
+										"products"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"MISSING_PARAMETERS\",\n    \"message\": \"required ProductType\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "400",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"productCode\": \"1001C\",\n    \"productName\": \"무)동물복지_유정란\",\n    \"version\": \"1\",\n    \"itemCategory\": \"축산\",\n    \"ph1\": \"축산기타\",\n    \"ph2\": \"축산무항\",\n    \"ph3\": \"달걀\",\n    \"productType\":\"RAW\",\n    \"procurementType\":\"PRODUCTION\",\n    \"brandType\": \"SUPER_FRESH\",\n    \"standardWeight\": \"600\",\n    \"baseUnit\": \"PALLETTE\",\n    \"storageType\": \"COLD\",\n    \"salesChannel\": \"ON_OFFLINE\",\n    \"useFixedWeight\": -1,\n    \"shelfLifeDay\": 10,\n    \"minAllowedOutboundDay\": 4.5,\n    \"maxAllowedOutboundDay\": 4.5,\n    \"consumptionDay\": 5,\n    \"cbm\": {\n        \"width\": 0.15,\n        \"depth\": 0.01,\n        \"height\": 0.08\n    },\n    \"inboundUnit\": \"BOX\",\n    \"unitPerBox\": 0,\n    \"unitPerPallette\": 0,\n    \"useSingleBarcode\": true,\n    \"barcode\": \"barcode\",\n    \"supplyStatus\": \"USED\",\n    \"canUse\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localApiHost}}/admin/v1/products",
+									"host": [
+										"{{localApiHost}}"
+									],
+									"path": [
+										"admin",
+										"v1",
+										"products"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"INVALID_PARAMETERS\",\n    \"message\": \"proto: (line 9:19): invalid value for enum type: \\\"RAW\\\"\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "409",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"productCode\": \"1001C\",\n    \"productName\": \"무)동물복지_유정란\",\n    \"version\": \"1\",\n    \"itemCategory\": \"축산\",\n    \"ph1\": \"축산기타\",\n    \"ph2\": \"축산무항\",\n    \"ph3\": \"달걀\",\n    \"productType\":\"RAW\",\n    \"procurementType\":\"PRODUCTION\",\n    \"brandType\": \"SUPER_FRESH\",\n    \"standardWeight\": \"600\",\n    \"baseUnit\": \"PALLETTE\",\n    \"storageType\": \"COLD\",\n    \"salesChannel\": \"ON_OFFLINE\",\n    \"useFixedWeight\": -1,\n    \"shelfLifeDay\": 10,\n    \"minAllowedOutboundDay\": 4.5,\n    \"maxAllowedOutboundDay\": 4.5,\n    \"consumptionDay\": 5,\n    \"cbm\": {\n        \"width\": 0.15,\n        \"depth\": 0.01,\n        \"height\": 0.08\n    },\n    \"inboundUnit\": \"BOX\",\n    \"unitPerBox\": 0,\n    \"unitPerPallette\": 0,\n    \"useSingleBarcode\": true,\n    \"barcode\": \"barcode\",\n    \"supplyStatus\": \"USED\",\n    \"canUse\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localApiHost}}/admin/v1/products",
+									"host": [
+										"{{localApiHost}}"
+									],
+									"path": [
+										"admin",
+										"v1",
+										"products"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"DUPLICATED_KEY\",\n    \"message\": \"중복된 요청입니다.\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "제상품 구매 가격 전체 조회",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localApiHost}}/admin/v1/products/purchase-prices",
+							"host": [
+								"{{localApiHost}}"
+							],
+							"path": [
+								"admin",
+								"v1",
+								"products",
+								"purchase-prices"
+							]
+						},
+						"description": "제상품 구매 가격 전체 조회 API\n\n##### `응답 코드.`\n\n| **HttpStatusCode** | **Code** | **Message** |\n| --- | --- | --- |\n| 200 | SUCCESS | 성공. |\n| 204 | NO_CONTENT | 조회된 결과가 없는 경우 |\n| 500 | FAILED_INTERNAL_ERROR | 서버에 문제가 생긴 경우 |\n\n##### `📌 응답 필드 참고`\n\n| **Field Name** | **Description** |\n| --- | --- |"
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:80/admin/v1/products/purchase-prices",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "80",
+									"path": [
+										"admin",
+										"v1",
+										"products",
+										"purchase-prices"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"SUCCESS\",\n    \"message\": \"\",\n    \"data\": [\n        {\n            \"id\": \"6377b37d4c78a2793ef6c25c\",\n            \"productCode\": \"1001C\",\n            \"supplierCode\": \"supplier001\",\n            \"purchasePrice\": 2200,\n            \"register\": \"\",\n            \"priceList\": null\n        }\n    ]\n}"
+						},
+						{
+							"name": "204",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{localApiHost}}/admin/v1/products/purchase-prices",
+									"host": [
+										"{{localApiHost}}"
+									],
+									"path": [
+										"admin",
+										"v1",
+										"products",
+										"purchase-prices"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "제상품 구매 가격 등록",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();",
+									"console.log(responseJson);",
+									"if(typeof responseJson.data.access_token !== 'undefined'){",
+									"    pm.environment.set(\"access_token\", responseJson.data.access_token);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productCode\": \"1001C\",\n    \"supplierCode\": \"supplier001\",\n    \"purchasePrice\": 2200,\n    \"startAt\": \"2022-11-14T00:00:00Z\"\n}"
+						},
+						"url": {
+							"raw": "{{localApiHost}}/admin/v1/products/purchase-prices",
+							"host": [
+								"{{localApiHost}}"
+							],
+							"path": [
+								"admin",
+								"v1",
+								"products",
+								"purchase-prices"
+							]
+						},
+						"description": "제상품 구매 가격 등록 API\n\n##### `요청 모델.`\n\n| **Field Name** | **Required** | **Type** | **Validation** |\n| --- | --- | --- | --- |\n| productCode | true | string | \\- |\n| supplierCode | true | string | \\- |\n| purchasePrice | true | string | gt -1 |\n| startAt | true | string |  |\n\n##### `응답 코드.`\n\n| **HttpStatusCode** | **Code** | **Message** |\n| --- | --- | --- |\n| 201 | CREATED | 성공. |\n| 400 | MISSING_PARAMETERS | 필수 필드가 없는 경우 |\n| 400 | INVALID_PARAMETERS | 올바른 형식이 아닌 경우 |\n| 404 | NOT_FOUND_ERROR | 생성 요청한 product code 가 존재하지 않는 경우 |\n| 500 | FAILED_INTERNAL_ERROR | 서버에 문제가 생긴 경우 |\n\n##### `📌 응답 필드 참고`\n\n| **Field Name** | **Description** |\n| --- | --- |"
+					},
+					"response": [
+						{
+							"name": "201",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"productCode\": \"5001B\",\n    \"supplierCode\": \"supplier001\",\n    \"purchasePrice\": 2200,\n    \"startAt\": \"2022-11-14T00:00:00Z\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:80/admin/v1/products/purchase-prices",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "80",
+									"path": [
+										"admin",
+										"v1",
+										"products",
+										"purchase-prices"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"CREATED\",\n    \"message\": \"\",\n    \"data\": {\n        \"id\": \"6377b244d31886b10e69dba8\",\n        \"productCode\": \"1001C\",\n        \"supplierCode\": \"supplier001\",\n        \"purchasePrice\": 2200,\n        \"register\": \"\",\n        \"priceList\": null\n    }\n}"
+						},
+						{
+							"name": "404 (생성 요청한 material code 가 등록되어 있지 않은 경우)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"productCode\": \"5001B\",\n    \"supplierCode\": \"supplier001\",\n    \"purchasePrice\": 2200,\n    \"startAt\": \"2022-11-14T00:00:00Z\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localApiHost}}/admin/v1/products/purchase-prices",
+									"host": [
+										"{{localApiHost}}"
+									],
+									"path": [
+										"admin",
+										"v1",
+										"products",
+										"purchase-prices"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"CREATED\",\n    \"message\": \"\",\n    \"data\": {\n        \"id\": \"63747225b27bf1915f10df85\",\n        \"productCode\": \"5001C\",\n        \"supplierCode\": \"supplier001\",\n        \"purchasePrice\": 2200,\n        \"register\": \"\",\n        \"priceList\": []\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "제상품 구매 가격 수정",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"purchasePrice\": -1,\n    \"startAt\": \"2022-11-10T00:00:00Z\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localApiHost}}/admin/v1/products/purchase-prices/6377b244d31886b10e69dba8",
+							"host": [
+								"{{localApiHost}}"
+							],
+							"path": [
+								"admin",
+								"v1",
+								"products",
+								"purchase-prices",
+								"6377b244d31886b10e69dba8"
+							]
+						},
+						"description": "제상품 구매 가격 수정 API\n\n##### `요청 모델.`\n\n| **Field Name** | **Required** | **Type** | **Validation** |\n| --- | --- | --- | --- |\n| purchasePrice | true | string | gt -1 |\n| startAt | true | string | \\- |\n\n##### `응답 코드.`\n\n| **HttpStatusCode** | **Code** | **Message** |\n| --- | --- | --- |\n| 200 | SUCCESS | 성공. |\n| 400 | MISSING_PARAMETERS | 필수 필드가 없는 경우 |\n| 400 | INVALID_PARAMETERS | 올바른 형식이 아닌 경우 |\n| 500 | FAILED_INTERNAL_ERROR | 서버에 문제가 생긴 경우 |\n\n##### `📌 응답 필드 참고`\n\n| **Field Name** | **Description** |\n| --- | --- |"
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"purchasePrice\": 4100,\n    \"startAt\": \"2022-11-10T00:00:00Z\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:80/admin/v1/products/purchase-prices/:documentID",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "80",
+									"path": [
+										"admin",
+										"v1",
+										"products",
+										"purchase-prices",
+										":documentID"
+									],
+									"variable": [
+										{
+											"key": "documentID",
+											"value": null
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"SUCCESS\",\n    \"message\": \"\",\n    \"data\": {\n        \"id\": \"6377b244d31886b10e69dba8\",\n        \"productCode\": \"1001C\",\n        \"supplierCode\": \"supplier001\",\n        \"purchasePrice\": 4100,\n        \"register\": \"\",\n        \"priceList\": [\n            {\n                \"price\": 2200,\n                \"startAt\": \"2022-11-18T16:29:03Z\",\n                \"endAt\": \"0001-01-01T00:00:00Z\",\n                \"register\": \"서준호\"\n            }\n        ]\n    }\n}"
+						},
+						{
+							"name": "400",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"purchasePrice\": 4100,\n    \"startAt\": \"2022-11-10T00:00:00Z\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localApiHost}}/admin/v1/products/purchase-prices/:documentID",
+									"host": [
+										"{{localApiHost}}"
+									],
+									"path": [
+										"admin",
+										"v1",
+										"products",
+										"purchase-prices",
+										":documentID"
+									],
+									"variable": [
+										{
+											"key": "documentID",
+											"value": null
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"MISSING_PARAMETERS\",\n    \"message\": \"required StartAt\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "400",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"purchasePrice\": 4100,\n    \"startAt\": \"2022-11-10T00:00:00Z\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localApiHost}}/admin/v1/products/purchase-prices/:documentID",
+									"host": [
+										"{{localApiHost}}"
+									],
+									"path": [
+										"admin",
+										"v1",
+										"products",
+										"purchase-prices",
+										":documentID"
+									],
+									"variable": [
+										{
+											"key": "documentID",
+											"value": null
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"INVALID_PARAMETERS\",\n    \"message\": \"invalid PatchProductPurchasePrice_Request.PurchasePrice: value must be greater than -1\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "제상품 구매 가격 변경 이력 조회",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// const responseJson = pm.response.json();",
+									"// console.log(responseJson);",
+									"// if(typeof responseJson.data.access_token !== 'undefined'){",
+									"//     pm.environment.set(\"access_token\", responseJson.data.access_token);",
+									"// }"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{localApiHost}}/admin/v1/products/purchase-prices/histories?supplierCode=supplier001",
+							"host": [
+								"{{localApiHost}}"
+							],
+							"path": [
+								"admin",
+								"v1",
+								"products",
+								"purchase-prices",
+								"histories"
+							],
+							"query": [
+								{
+									"key": "productCode",
+									"value": "1001C",
+									"disabled": true
+								},
+								{
+									"key": "supplierCode",
+									"value": "supplier001"
+								}
+							]
+						},
+						"description": "제상품 구매 가격 변경 이력 조회 API\n\n##### `쿼리 파라미터.`\n\n| **Field Name** | **Required** | **Type** | **Validation** |\n| --- | --- | --- | --- |\n| productCode | true | string | \\- |\n| supplierCode | true | string | \\- |\n\n##### `응답 코드.`\n\n| **HttpStatusCode** | **Code** | **Message** |\n| --- | --- | --- |\n| 200 | SUCCESS | 성공. |\n| 204 | NO_CONTENT | 조회된 결과가 없는 경우 |\n| 400 | MISSING_PARAMETERS | 필수 필드가 없는 경우 |\n| 404 | NOT_FOUND_ERROR | 조회 요청한 product & supplier code 가 존재하지 않는 경우 |\n| 500 | FAILED_INTERNAL_ERROR | 서버에 문제가 생긴 경우 |\n\n##### `📌 응답 필드 참고`\n\n| **Field Name** | **Description** |\n| --- | --- |"
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:80/admin/v1/products/purchase-prices/histories?productCode=5001B&supplierCode=supplier001",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "80",
+									"path": [
+										"admin",
+										"v1",
+										"products",
+										"purchase-prices",
+										"histories"
+									],
+									"query": [
+										{
+											"key": "productCode",
+											"value": "5001B"
+										},
+										{
+											"key": "supplierCode",
+											"value": "supplier001"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"SUCCESS\",\n    \"message\": \"\",\n    \"data\": [\n        {\n            \"price\": 2200,\n            \"startAt\": \"2022-11-18T16:29:03Z\",\n            \"endAt\": \"0001-01-01T00:00:00Z\",\n            \"register\": \"서준호\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "204",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{localApiHost}}/admin/v1/products/purchase-prices/histories?productCode=5001B&supplierCode=supplier001",
+									"host": [
+										"{{localApiHost}}"
+									],
+									"path": [
+										"admin",
+										"v1",
+										"products",
+										"purchase-prices",
+										"histories"
+									],
+									"query": [
+										{
+											"key": "productCode",
+											"value": "5001B"
+										},
+										{
+											"key": "supplierCode",
+											"value": "supplier001"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "400",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{localApiHost}}/admin/v1/products/purchase-prices/histories?productCode=5001B&supplierCode=supplier001",
+									"host": [
+										"{{localApiHost}}"
+									],
+									"path": [
+										"admin",
+										"v1",
+										"products",
+										"purchase-prices",
+										"histories"
+									],
+									"query": [
+										{
+											"key": "productCode",
+											"value": "5001B"
+										},
+										{
+											"key": "supplierCode",
+											"value": "supplier001"
+										}
+									]
+								}
+							},
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"BAD_REQUEST\",\n    \"message\": \"잘못된 요청입니다.▸ \",\n    \"data\": null\n}"
+						},
+						{
+							"name": "404 (조회 요청한 product & supplier code 가 없는 경우)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{localApiHost}}/admin/v1/products/purchase-prices/histories?productCode=5001B&supplierCode=supplier001",
+									"host": [
+										"{{localApiHost}}"
+									],
+									"path": [
+										"admin",
+										"v1",
+										"products",
+										"purchase-prices",
+										"histories"
+									],
+									"query": [
+										{
+											"key": "productCode",
+											"value": "5001B"
+										},
+										{
+											"key": "supplierCode",
+											"value": "supplier001"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"NOT_FOUND_ERROR\",\n    \"message\": \"rpc error: code = NotFound desc = rpc error: code = NotFound desc = NOT_FOUND_ERROR, materials_puchase_prices not found. | {query info:  filter: map[material_code:1001B supplier_code:supplier001]}\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "제상품 판매 가격 전체 조회",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localApiHost}}/admin/v1/products/sales-prices",
+							"host": [
+								"{{localApiHost}}"
+							],
+							"path": [
+								"admin",
+								"v1",
+								"products",
+								"sales-prices"
+							]
+						},
+						"description": "제상품 판매 가격 전체 조회 API\n\n##### `응답 코드.`\n\n| **HttpStatusCode** | **Code** | **Message** |\n| --- | --- | --- |\n| 200 | SUCCESS | 성공. |\n| 204 | NO_CONTENT | 조회된 결과가 없는 경우 |\n| 400 | MISSING_PARAMETERS | 필수 필드가 없는 경우 |\n| 401 | RESOLVE_REQUIRED_ACTIONS | 비밀번호가 만료된 경우 |\n| 500 | FAILED_INTERNAL_ERROR | 서버에 문제가 생긴 경우 |\n\n##### `📌 응답 필드 참고`\n\n| **Field Name** | **Description** |\n| --- | --- |"
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:80/admin/v1/products/sales-prices/histories?productCode=5001B&salesChannel=정육각",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "80",
+									"path": [
+										"admin",
+										"v1",
+										"products",
+										"sales-prices",
+										"histories"
+									],
+									"query": [
+										{
+											"key": "productCode",
+											"value": "5001B"
+										},
+										{
+											"key": "salesChannel",
+											"value": "정육각"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"SUCCESS\",\n    \"message\": \"\",\n    \"data\": [\n        {\n            \"id\": \"6377b6fb4a6cbf0a6d476519\",\n            \"productCode\": \"5001B\",\n            \"productName\": \"\",\n            \"salesChannel\": 2,\n            \"salesPrice\": 2200,\n            \"register\": \"\",\n            \"priceList\": null\n        },\n        {\n            \"id\": \"6377bcba4a9e7b2280b2c97e\",\n            \"productCode\": \"1001C\",\n            \"productName\": \"\",\n            \"salesChannel\": 3,\n            \"salesPrice\": 2200,\n            \"register\": \"\",\n            \"priceList\": null\n        }\n    ]\n}"
+						},
+						{
+							"name": "204",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{localApiHost}}/admin/v1/products/sales-prices/histories?productCode=5001B&salesChannel=ONLINE",
+									"host": [
+										"{{localApiHost}}"
+									],
+									"path": [
+										"admin",
+										"v1",
+										"products",
+										"sales-prices",
+										"histories"
+									],
+									"query": [
+										{
+											"key": "productCode",
+											"value": "5001B"
+										},
+										{
+											"key": "salesChannel",
+											"value": "ONLINE"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"SUCCESS\",\n    \"message\": \"\",\n    \"data\": [\n        {\n            \"price\": 4100,\n            \"startAt\": \"2022-11-16T00:24:26Z\",\n            \"endAt\": \"0001-01-01T00:00:00Z\",\n            \"register\": \"서준호\"\n        },\n        {\n            \"price\": 3900,\n            \"startAt\": \"2022-11-16T05:18:13Z\",\n            \"endAt\": \"0001-01-01T00:00:00Z\",\n            \"register\": \"서준호\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "제상품 판매 가격 등록",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// const responseJson = pm.response.json();",
+									"// console.log(responseJson);",
+									"// if(typeof responseJson.data.access_token !== 'undefined'){",
+									"//     pm.environment.set(\"access_token\", responseJson.data.access_token);",
+									"// }"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productCode\": \"1001C\",\n    \"productName\": \"무항생제 한우\",\n    \"salesChannel\": \"OFFLINE\",\n    \"salesPrice\": 2200,\n    \"startAt\": \"2022-11-14T00:00:00Z\"\n}"
+						},
+						"url": {
+							"raw": "{{localApiHost}}/admin/v1/products/sales-prices",
+							"host": [
+								"{{localApiHost}}"
+							],
+							"path": [
+								"admin",
+								"v1",
+								"products",
+								"sales-prices"
+							]
+						},
+						"description": "제상품 판매 가격 등록 API\n\n##### `요청 모델.`\n\n| **Field Name** | **Required** | **Type** | **Validation** |\n| --- | --- | --- | --- |\n| productCode | true | string | \\- |\n| productName | true | string | \\- |\n| salesChannel | true | enum | \\- |\n| salesPrice | true | int32 | gt -1 |\n| startAt | true | string | \\- |\n\n##### `응답 코드.`\n\n| **HttpStatusCode** | **Code** | **Message** |\n| --- | --- | --- |\n| 201 | CREATED | 성공. |\n| 400 | MISSING_PARAMETERS | 필수 필드가 없는 경우 |\n| 400 | INVALID_PARAMETERS | 올바른 형식이 아닌 경우 |\n| 404 | NOT_FOUND_ERROR | 생성 요청한 product code 가 존재하지 않는 경우 |\n| 500 | FAILED_INTERNAL_ERROR | 서버에 문제가 생긴 경우 |\n\n##### `📌 응답 필드 참고`\n\n| **Field Name** | **Description** |\n| --- | --- |"
+					},
+					"response": [
+						{
+							"name": "201",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"productCode\": \"5001B\",\n    \"productName\": \"무항생제 한우\",\n    \"salesChannel\": \"ONLINE\",\n    \"salesPrice\": 2200,\n    \"startAt\": \"2022-11-14T00:00:00Z\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:80/admin/v1/products/\bsales-prices",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "80",
+									"path": [
+										"admin",
+										"v1",
+										"products",
+										"\bsales-prices"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"CREATED\",\n    \"message\": \"\",\n    \"data\": {\n        \"id\": \"6377b6fb4a6cbf0a6d476519\",\n        \"productCode\": \"5001B\",\n        \"productName\": \"\",\n        \"salesChannel\": 2,\n        \"salesPrice\": 2200,\n        \"register\": \"\",\n        \"priceList\": null\n    }\n}"
+						},
+						{
+							"name": "400",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"productCode\": \"5001B\",\n    \"productName\": \"무항생제 한우\",\n    \"salesChannel\": \"ONLINE\",\n    \"startAt\": \"2022-11-14T00:00:00Z\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localApiHost}}/admin/v1/products/\bsales-prices",
+									"host": [
+										"{{localApiHost}}"
+									],
+									"path": [
+										"admin",
+										"v1",
+										"products",
+										"\bsales-prices"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"MISSING_PARAMETERS\",\n    \"message\": \"required SalesPrice\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "400",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"productCode\": \"5001B\",\n    \"productName\": \"무항생제 한우\",\n    \"salesChannel\": \"정육각\",\n    \"salesPrice\": 2200,\n    \"startAt\": \"2022-11-14T00:00:00Z\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localApiHost}}/admin/v1/products/\bsales-prices",
+									"host": [
+										"{{localApiHost}}"
+									],
+									"path": [
+										"admin",
+										"v1",
+										"products",
+										"\bsales-prices"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"INVALID_PARAMETERS\",\n    \"message\": \"proto: (line 4:21): invalid value for enum type: \\\"정육각\\\"\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "404 (생성 요청한 product code 가 등록되어 있지 않은 경우)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"productCode\": \"5001B\",\n    \"supplierCode\": \"supplier001\",\n    \"purchasePrice\": 2200,\n    \"startAt\": \"2022-11-14T00:00:00Z\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localApiHost}}/admin/v1/products/\bsales-prices",
+									"host": [
+										"{{localApiHost}}"
+									],
+									"path": [
+										"admin",
+										"v1",
+										"products",
+										"\bsales-prices"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"CREATED\",\n    \"message\": \"\",\n    \"data\": {\n        \"id\": \"63747225b27bf1915f10df85\",\n        \"productCode\": \"5001C\",\n        \"supplierCode\": \"supplier001\",\n        \"purchasePrice\": 2200,\n        \"register\": \"\",\n        \"priceList\": []\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "제상품 판매 가격 수정",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"salesPrice\": 4100,\n    \"startAt\": \"2022-11-10T00:00:00Z\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localApiHost}}/admin/v1/products/sales-prices/:documentID",
+							"host": [
+								"{{localApiHost}}"
+							],
+							"path": [
+								"admin",
+								"v1",
+								"products",
+								"sales-prices",
+								":documentID"
+							],
+							"variable": [
+								{
+									"key": "documentID",
+									"value": null
+								}
+							]
+						},
+						"description": "제상품 판매 가격 수정 API\n\n##### `요청 모델.`\n\n| **Field Name** | **Required** | **Type** | **Validation** |\n| --- | --- | --- | --- |\n| salesPrice | true | int32 | \\- |\n| startAt | true | string | \\- |\n\n##### `응답 코드.`\n\n| **HttpStatusCode** | **Code** | **Message** |\n| --- | --- | --- |\n| 200 | SUCCESS | 성공. |\n| 400 | MISSING_PARAMETERS | 필수 필드가 없는 경우 |\n| 400 | INVALID_PARAMETERS | 올바른 형식이 아닌 경우 |\n| 500 | FAILED_INTERNAL_ERROR | 서버에 문제가 생긴 경우 |\n\n##### `📌 응답 필드 참고`\n\n| **Field Name** | **Description** |\n| --- | --- |"
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"salesPrice\": 4100,\n    \"startAt\": \"2022-11-10T00:00:00Z\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:80/admin/v1/products/sales-prices/:documentID",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "80",
+									"path": [
+										"admin",
+										"v1",
+										"products",
+										"sales-prices",
+										":documentID"
+									],
+									"variable": [
+										{
+											"key": "documentID",
+											"value": null
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"SUCCESS\",\n    \"message\": \"\",\n    \"data\": {\n        \"id\": \"63742b96bf7c8147ea7bfa8a\",\n        \"productCode\": \"5001B\",\n        \"productName\": \"\",\n        \"salesChannel\": \"정육각\",\n        \"salesPrice\": 3900,\n        \"register\": \"\",\n        \"priceList\": [\n            {\n                \"price\": 4100,\n                \"startAt\": \"2022-11-16T00:24:26Z\",\n                \"endAt\": \"0001-01-01T00:00:00Z\",\n                \"register\": \"서준호\"\n            },\n            {\n                \"price\": 3900,\n                \"startAt\": \"2022-11-16T05:18:13Z\",\n                \"endAt\": \"0001-01-01T00:00:00Z\",\n                \"register\": \"서준호\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "제상품 판매 가격 변경 이력 조회",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localApiHost}}/admin/v1/products/sales-prices/histories?productCode=5001B&salesChannel=ONLINE",
+							"host": [
+								"{{localApiHost}}"
+							],
+							"path": [
+								"admin",
+								"v1",
+								"products",
+								"sales-prices",
+								"histories"
+							],
+							"query": [
+								{
+									"key": "productCode",
+									"value": "5001B"
+								},
+								{
+									"key": "salesChannel",
+									"value": "ONLINE"
+								}
+							]
+						},
+						"description": "제상품 판매 가격 변경 이력 조회 API\n\n##### `쿼리 파라미터.`\n\n| **Field Name** | **Required** | **Type** | **Validation** |\n| --- | --- | --- | --- |\n| productCode | true | string | \\- |\n| salesChannel | true | string | \\- |\n\n##### `응답 코드.`\n\n| **HttpStatusCode** | **Code** | **Message** |\n| --- | --- | --- |\n| 200 | SUCCESS | 성공. |\n| 204 | NO_CONTENT | 조회된 결과가 없는 경우 |\n| 400 | MISSING_PARAMETERS | 필수 필드가 없는 경우 |\n| 404 | NOT_FOUND_ERROR | 조회 요청한 product & supplier code 가 존재하지 않는 경우 |\n| 500 | FAILED_INTERNAL_ERROR | 서버에 문제가 생긴 경우 |\n\n##### `📌 응답 필드 참고`\n\n| **Field Name** | **Description** |\n| --- | --- |"
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:80/admin/v1/products/sales-prices/histories?productCode=5001B&salesChannel=정육각",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "80",
+									"path": [
+										"admin",
+										"v1",
+										"products",
+										"sales-prices",
+										"histories"
+									],
+									"query": [
+										{
+											"key": "productCode",
+											"value": "5001B"
+										},
+										{
+											"key": "salesChannel",
+											"value": "정육각"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"SUCCESS\",\n    \"message\": \"\",\n    \"data\": [\n        {\n            \"price\": 4100,\n            \"startAt\": \"2022-11-16T00:24:26Z\",\n            \"endAt\": \"0001-01-01T00:00:00Z\",\n            \"register\": \"서준호\"\n        },\n        {\n            \"price\": 3900,\n            \"startAt\": \"2022-11-16T05:18:13Z\",\n            \"endAt\": \"0001-01-01T00:00:00Z\",\n            \"register\": \"서준호\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "204",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{localApiHost}}/admin/v1/products/sales-prices/histories?productCode=5001B&salesChannel=ONLINE",
+									"host": [
+										"{{localApiHost}}"
+									],
+									"path": [
+										"admin",
+										"v1",
+										"products",
+										"sales-prices",
+										"histories"
+									],
+									"query": [
+										{
+											"key": "productCode",
+											"value": "5001B"
+										},
+										{
+											"key": "salesChannel",
+											"value": "ONLINE"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"SUCCESS\",\n    \"message\": \"\",\n    \"data\": [\n        {\n            \"price\": 4100,\n            \"startAt\": \"2022-11-16T00:24:26Z\",\n            \"endAt\": \"0001-01-01T00:00:00Z\",\n            \"register\": \"서준호\"\n        },\n        {\n            \"price\": 3900,\n            \"startAt\": \"2022-11-16T05:18:13Z\",\n            \"endAt\": \"0001-01-01T00:00:00Z\",\n            \"register\": \"서준호\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "404 (조회 요청한 product & sales channel 이 없는 경우)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{localApiHost}}/admin/v1/products/sales-prices/histories?productCode=5001B&salesChannel=ON_OFFLINE",
+									"host": [
+										"{{localApiHost}}"
+									],
+									"path": [
+										"admin",
+										"v1",
+										"products",
+										"sales-prices",
+										"histories"
+									],
+									"query": [
+										{
+											"key": "productCode",
+											"value": "5001B"
+										},
+										{
+											"key": "salesChannel",
+											"value": "ON_OFFLINE"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"code\": \"NOT_FOUND_ERROR\",\n    \"message\": \"rpc error: code = NotFound desc = products_sales_prices not found. | {query info:  filter: map[product_code:5001B sales_channel:1]}\",\n    \"data\": null\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "devKcHost",
+			"value": "https://dev-keycloak.yookgak.com/realms",
+			"type": "string"
+		},
+		{
+			"key": "localKcHost",
+			"value": "http://localhost:8080/admin/realms",
+			"type": "string"
+		},
+		{
+			"key": "devApiHost",
+			"value": "https://dev-iam.yookgak.com"
+		},
+		{
+			"key": "localApiHost",
+			"value": "http://localhost:80",
+			"type": "string"
+		},
+		{
+			"key": "localTokenHost",
+			"value": "http://localhost:8080/realms",
+			"type": "string"
+		}
+	]
+}

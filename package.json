@@ -7,10 +7,12 @@
     "test": "jest",
     "schema": "ts-node src/utils/validate.ts",
     "createSchema": "ts-node src/generator/createSchema/jscGenerator.ts",
-    "createTypeModel": "ts-node src/generator/createSwaggerTS/openAPIGennerator.ts",
-    "generateTS": "openapi -i https://turb-api.guardione.dev/swagger.json --output ./dist --client axios",
+    "createTypeModel": "ts-node src/generator/createSwaggerTS/openAPIGenerator.ts",
+    "generateTS": "openapi -i https://payment-dev.yookgak.com/api/docs-json --output ./dist --client axios",
     "validate-schema": "openapi-generator-cli validate -i ./src/api/common/swaggerAPI.json",
-    "generate-client": "openapi-generator-cli generate -i ./src/api/common/swaggerAPI.json -g typescript-axios -o ./src/generated-sources/openapi --skip-validate-spec",
+    "openapi-typescript": "openapi-typescript ./src/generator/postman/to/collection.yaml --output petstore.d.ts",
+    "generate-client": "openapi-generator-cli generate -i https://user-dev.yookgak.com/admin/docs-json -g typescript-axios -o ./src/generated-sources/openapi --skip-validate-spec",
+    "postmanToOpenApi": "ts-node ./src/generator/postman/run.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +26,9 @@
   "homepage": "https://github.com/Junyong34/schema-api-validate#readme",
   "dependencies": {
     "jest": "^26.6.3",
+    "js-yaml": "^4.1.0",
+    "postman-code-generators": "^1.2.2",
+    "postman-to-swagger": "github:tecfu/postman-to-swagger",
     "puppeteer": "^12.0.1",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.2"
@@ -47,6 +52,7 @@
     "js-convert-case": "^4.1.2",
     "node-fetch": "^3.1.0",
     "openapi-typescript-codegen": "^0.12.5",
+    "postman-to-openapi": "^2.9.0",
     "prettier": "^2.4.1",
     "qs": "^6.10.1",
     "ts-jest": "26.5.6",

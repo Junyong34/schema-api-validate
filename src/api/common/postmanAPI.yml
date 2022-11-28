@@ -1,0 +1,330 @@
+openapi: 3.0.0
+info:
+  title: MDM-APIs
+  version: 1.0.0
+servers:
+  - url: http://192.0.01:8080
+paths:
+  /admin/v1/suppliers:
+    get:
+      tags:
+        - default
+      summary: 거래처 조회
+      responses:
+        undefined:
+          content:
+            text/plain:
+              schema:
+                type: string
+    post:
+      tags:
+        - default
+      summary: 거래처 생성
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                supplierCode: supplier#2
+                supplierName: supplier#0
+                manager: 서준호
+                businessNumber: '2248700271'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/v1/materials:
+    get:
+      tags:
+        - default
+      summary: 원부자재 조회
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - default
+      summary: 원부자재 생성
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                materialCode: 1001A
+                materialName: 무)동물복지_유정란
+                itemCategory: 축산
+                ph1: 축산기타
+                ph2: 축산무항
+                ph3: 달걀
+                materialType: RAW
+                ProcurementType: PRODUCTION
+                brandType: SUPER_FRESH
+                shelfLifeDay: 10
+                minAllowedOutboundDay: 4.5
+                maxAllowedOutboundDay: 4.5
+                consumptionDay: 5
+                supplyStatus: USED
+                leadTimeDay: 0
+                orderUnit: BOX
+                baseUnit: BOX
+                inboundUnit: BOX
+                unitPerBox: 0
+                orderUnitQty: 0
+                minOrderQty: 0
+                maxOrderQty: 0
+                inboundableDays:
+                  - 0
+                  - 1
+                useAutoOrder: true
+                useSingleBarcode: true
+                barcode: barcode
+                canUse: true
+                version: '1'
+                standardUnit: '600'
+                storageType: COLD
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/v1/materials/purchase-prices:
+    post:
+      tags:
+        - default
+      summary: 원부자재 구매 가격 등록
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                materialCode: 1001C
+                materialName: 무)동물복지_유정란
+                supplierCode: supplier001
+                price: 2200
+                startAt: '2022-11-14T00:00:00Z'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/v1/materials/purchase-prices/63746f61c78cce5682dec71c:
+    patch:
+      tags:
+        - default
+      summary: 원부자재 구매 가격 수정
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                purchasePrice: 2450
+                startAt: '2022-11-10T00:00:00Z'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/v1/materials/purchase-prices/histories:
+    get:
+      tags:
+        - default
+      summary: 원부자재 구매 가격 변경 이력 조회
+      parameters:
+        - name: materialCode
+          in: query
+          schema:
+            type: string
+          example: 1001C
+        - name: supplierCode
+          in: query
+          schema:
+            type: string
+          example: supplier001
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/v1/products:
+    get:
+      tags:
+        - default
+      summary: 제상품 조회
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - default
+      summary: 제상품생성
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                productCode: 1001F
+                productName: 무)동물복지_유정란
+                itemCategory: 축산
+                ph1: 축산기타
+                ph2: 축산무항
+                ph3: 달걀
+                productType: PRODUCTS
+                ProcurementType: PRODUCTION
+                brandType: SUPER_FRESH
+                shelfLifeDay: 10
+                minAllowedOutboundDay: 4.5
+                maxAllowedOutboundDay: 4.5
+                consumptionDay: 5
+                supplyStatus: USED
+                leadTimeDay: 0
+                orderUnit: BOX
+                baseUnit: BOX
+                inboundUnit: BOX
+                unitPerBox: 0
+                orderUnitQty: 0
+                minOrderQty: 0
+                maxOrderQty: 0
+                inboundableDays:
+                  - 0
+                  - 1
+                useAutoOrder: true
+                useSingleBarcode: true
+                barcode: barcode
+                canUse: true
+                version: '1'
+                standardUnit: '600'
+                storageType: COLD
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/v1/products/purchase-prices:
+    post:
+      tags:
+        - default
+      summary: 제상품 구매 가격 등록
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                productCode: 5001C
+                supplierCode: supplier001
+                purchasePrice: 1940
+                startAt: '2022-11-14T00:00:00Z'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/v1/products/purchase-prices/63747225b27bf1915f10df85:
+    patch:
+      tags:
+        - default
+      summary: 제상품 구매 가격 수정
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                purchasePrice: 1970
+                startAt: '2022-11-10T00:00:00Z'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/v1/products/purchase-prices/histories:
+    get:
+      tags:
+        - default
+      summary: 제상품 구매 가격 변경 이력 조회
+      parameters:
+        - name: productCode
+          in: query
+          schema:
+            type: string
+          example: 5001B
+        - name: supplierCode
+          in: query
+          schema:
+            type: string
+          example: supplier001
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/v1/products/sales-prices:
+    post:
+      tags:
+        - default
+      summary: 제상품 판매 가격 등록
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                productCode: 5001A
+                productName: 무항생제 한우
+                salesChannel: 정육각
+                salesPrice: 2200
+                startAt: '2022-11-14T00:00:00Z'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/v1/products/sales-prices/63742b96bf7c8147ea7bfa8a:
+    patch:
+      tags:
+        - default
+      summary: 제상품 판매 가격 수정
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                salesPrice: 3900
+                startAt: '2022-11-10T00:00:00Z'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/v1/products/sales-prices/histories:
+    get:
+      tags:
+        - default
+      summary: 제상품 판매 가격 변경 이력 조회
+      parameters:
+        - name: productCode
+          in: query
+          schema:
+            type: string
+          example: 5001B
+        - name: salesChannel
+          in: query
+          schema:
+            type: string
+          example: 정육각
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}

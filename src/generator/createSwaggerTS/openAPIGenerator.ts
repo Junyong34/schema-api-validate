@@ -1,7 +1,11 @@
 import * as path from "path";
 import { generate, HttpClient } from "openapi-typescript-codegen";
+// import {operations} from "../../../petstore";
+// import specURL from '../postman/MDM.postman_collection.json'
 
-const specURL = "https://turb-api.guardione.dev/swagger.json";
+// const specURL = "https://payment-dev.yookgak.com/admin/docs-json";
+const specURL = "./src/generator/postman/to/collection.json";
+// const specURL = "../postman/to/collection2.yaml";
 const outputPath = path.resolve(
   path.join(__dirname, "../..", "__apiTypesTemp2__")
 );
@@ -11,7 +15,7 @@ async function swaggerModelGenerate() {
     await generate({
       input: specURL,
       output: outputPath,
-      httpClient: HttpClient.FETCH,
+      httpClient: HttpClient.AXIOS,
       exportCore: true,
       exportServices: true,
       exportModels: true,
@@ -25,3 +29,4 @@ async function swaggerModelGenerate() {
 }
 
 swaggerModelGenerate().then(() => console.log(`🚀 model 생성 완료`));
+
